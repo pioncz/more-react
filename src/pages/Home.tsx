@@ -5,6 +5,7 @@ const Home = () => {
     <>
       <h1>Vite + React</h1>
       <Link to="/team">Team</Link>
+      <Link to="/rewards">Rewards</Link>
     </>
   )
 };
