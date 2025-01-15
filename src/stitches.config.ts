@@ -12,20 +12,27 @@ export const {
 } = createStitches({
   theme: {
     colors: {
-      primary: '#93B1A6',
-      secondary: '#5C8374',
-      tertiary: '#183D3D',
-      quaternary: '#040D12',
-      gray100: 'hsl(206,22%,99%)',
-      gray200: 'hsl(206,12%,97%)',
-      gray300: 'hsl(206,11%,92%)',
-      gray400: 'hsl(206,10%,84%)',
-      gray500: 'hsl(206,10%,76%)',
-      gray600: 'hsl(206,10%,44%)',
+      gray100: '#6b6b77',
+      gray200: '#5D5D67',
+      gray300: '#52525B',
+      gray400: '#3F3F46',
+      gray500: '#27272a',
+      foreground: '#fff',
     },
     transitions: {
       default: 'all 0.2s ease-in-out',
-    }
+    },
+    space: {
+      1: '4px',
+      2: '8px',
+      3: '12px',
+    },
+    fontSizes: {
+      1: '14px',
+    },
+    radii: {
+      1: '4px',
+    },
   },
   media: {
     bp1: '(min-width: 480px)',

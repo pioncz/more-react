@@ -1,33 +1,32 @@
-import reactLogo from './assets/react.svg'
-import background from './assets/bg.jpg'
-import viteLogo from '/vite.svg'
-import { Route, Routes } from 'react-router'
-import Home from './pages/Home'
-import Team from './pages/Team'
-import Rewards from './pages/Rewards'
-import { globalCss } from './stitches.config'
+import background from './assets/bg.jpg';
+import { Link, Route, Routes } from 'react-router';
+import Home from './pages/Home';
+import Team from './pages/Team';
+import Rewards from './pages/Rewards/Rewards';
+import { globalCss } from './stitches.config';
 
 const globalStyles = globalCss({
-  ':root': { 
-    fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
+  ':root': {
+    fontFamily:
+      'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
     lineHeight: '1.5',
     fontWeight: '400',
     color: 'rgba(255, 255, 255, 0.87)',
     background: `linear-gradient(
-          rgba(0, 0, 0, 0.7), 
-          rgba(0, 0, 0, 0.7)
+          rgba(0, 0, 20, 0.8), 
+          rgba(10, 0, 0, 0.9)
         ), url(${background}), #080808`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundAttachment: 'fixed',
-  
+
     fontSynthesis: 'none',
     textRendering: 'optimizeLegibility',
     '-webkit-font-smoothing': 'antialiased',
     '-moz-osx-font-smoothing': 'grayscale',
   },
-  'body': {
+  body: {
     margin: 0,
     display: 'flex',
     placeItems: 'center',
@@ -39,7 +38,7 @@ const globalStyles = globalCss({
     margin: '0 auto',
     padding: '2rem',
     textAlign: 'center',
-  }
+  },
 });
 
 const App = () => {
@@ -47,21 +46,16 @@ const App = () => {
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
+      <Link to="/">Home</Link>
+      <Link to="/team">Team</Link>
+      <Link to="/rewards">Rewards</Link>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/team" element={<Team />} />
         <Route path="/rewards" element={<Rewards />} />
       </Routes>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
