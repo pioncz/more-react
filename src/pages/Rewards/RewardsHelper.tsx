@@ -9,6 +9,15 @@ export const Difficulty = {
   UltraNightmare: 'Ultra Nightmare',
 };
 
+export type Reward = {
+  id: number;
+  difficulty: string;
+  form: string;
+  trialNumber: number;
+  trialStage: string;
+  rewards: string;
+};
+
 const TrialDifficulties = ['Easy', 'Normal', 'Hard'];
 
 export const getRewardData = (difficulty: string, form: string) => {

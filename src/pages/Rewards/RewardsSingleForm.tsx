@@ -1,5 +1,4 @@
-import React from 'react';
-import { getRewardData } from './RewardsHelper';
+import { getRewardData, type Reward } from './RewardsHelper';
 import { styled } from '@/stitches.config';
 import Table from '@/components/Table/Table';
 
@@ -15,7 +14,10 @@ const RewardsSingleForm = ({
   return (
     <>
       <Title>{form} Form</Title>
-      <Table columns={columns} data={data}>
+      <Table<{ id: string; label?: string; rewards?: Reward[] }>
+        columns={columns}
+        data={data}
+      >
         {(dataItem) =>
           dataItem?.label ||
           dataItem?.rewards?.map((reward) => (
