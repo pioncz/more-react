@@ -245,7 +245,7 @@
     "form": "Ram",
     "trialNumber": 2,
     "trialStage": "Easy",
-    "rewards": "\"R. Gem"
+    "rewards": "R. Gem, 1* Basalt x 1"
   },
   {
     "id": 33,
@@ -461,7 +461,7 @@
     "form": "Ram",
     "trialNumber": 2,
     "trialStage": "Easy",
-    "rewards": "\"R. Gem"
+    "rewards": "R. Gem, 1* Basalt x 1"
   },
   {
     "id": 60,
@@ -677,7 +677,7 @@
     "form": "Ram",
     "trialNumber": 2,
     "trialStage": "Easy",
-    "rewards": "\"R. Gem"
+    "rewards": "R. Gem, E. Gem, 1* Basalt x 1"
   },
   {
     "id": 87,
@@ -869,7 +869,7 @@
     "form": "Ram",
     "trialNumber": 1,
     "trialStage": "Easy",
-    "rewards": "\"R. Gem"
+    "rewards": "R. Gem, E. Gem, 1* Basalt x 1"
   },
   {
     "id": 111,
@@ -1081,7 +1081,7 @@
   },
   {
     "id": 137,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Ram",
     "trialNumber": 1,
     "trialStage": "Easy",
@@ -1089,7 +1089,7 @@
   },
   {
     "id": 138,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Ram",
     "trialNumber": 1,
     "trialStage": "Normal",
@@ -1097,7 +1097,7 @@
   },
   {
     "id": 139,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Ram",
     "trialNumber": 1,
     "trialStage": "Hard",
@@ -1105,15 +1105,15 @@
   },
   {
     "id": 140,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Ram",
     "trialNumber": 2,
     "trialStage": "Easy",
-    "rewards": "\"R. Gem"
+    "rewards": "R. Gem, 2* Basalt x 1"
   },
   {
     "id": 141,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Ram",
     "trialNumber": 2,
     "trialStage": "Normal",
@@ -1121,7 +1121,7 @@
   },
   {
     "id": 142,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Ram",
     "trialNumber": 2,
     "trialStage": "Hard",
@@ -1129,7 +1129,7 @@
   },
   {
     "id": 143,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Ram",
     "trialNumber": 3,
     "trialStage": "Easy",
@@ -1137,7 +1137,7 @@
   },
   {
     "id": 144,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Ram",
     "trialNumber": 3,
     "trialStage": "Normal",
@@ -1145,7 +1145,7 @@
   },
   {
     "id": 145,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Ram",
     "trialNumber": 3,
     "trialStage": "Hard",
@@ -1153,7 +1153,7 @@
   },
   {
     "id": 146,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Lion",
     "trialNumber": 1,
     "trialStage": "Easy",
@@ -1161,7 +1161,7 @@
   },
   {
     "id": 147,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Lion",
     "trialNumber": 1,
     "trialStage": "Normal",
@@ -1169,7 +1169,7 @@
   },
   {
     "id": 148,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Lion",
     "trialNumber": 1,
     "trialStage": "Hard",
@@ -1177,7 +1177,7 @@
   },
   {
     "id": 149,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Lion",
     "trialNumber": 2,
     "trialStage": "Easy",
@@ -1185,7 +1185,7 @@
   },
   {
     "id": 150,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Lion",
     "trialNumber": 2,
     "trialStage": "Normal",
@@ -1193,7 +1193,7 @@
   },
   {
     "id": 151,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Lion",
     "trialNumber": 2,
     "trialStage": "Hard",
@@ -1201,7 +1201,7 @@
   },
   {
     "id": 152,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Lion",
     "trialNumber": 3,
     "trialStage": "Easy",
@@ -1209,7 +1209,7 @@
   },
   {
     "id": 153,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Lion",
     "trialNumber": 3,
     "trialStage": "Normal",
@@ -1217,7 +1217,7 @@
   },
   {
     "id": 154,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Lion",
     "trialNumber": 3,
     "trialStage": "Hard",
@@ -1225,7 +1225,7 @@
   },
   {
     "id": 155,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Viper",
     "trialNumber": 1,
     "trialStage": "Easy",
@@ -1233,7 +1233,7 @@
   },
   {
     "id": 156,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Viper",
     "trialNumber": 1,
     "trialStage": "Normal",
@@ -1241,7 +1241,7 @@
   },
   {
     "id": 157,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Viper",
     "trialNumber": 1,
     "trialStage": "Hard",
@@ -1249,7 +1249,7 @@
   },
   {
     "id": 158,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Viper",
     "trialNumber": 2,
     "trialStage": "Easy",
@@ -1257,7 +1257,7 @@
   },
   {
     "id": 159,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Viper",
     "trialNumber": 2,
     "trialStage": "Normal",
@@ -1265,7 +1265,7 @@
   },
   {
     "id": 160,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Viper",
     "trialNumber": 2,
     "trialStage": "Hard",
@@ -1273,7 +1273,7 @@
   },
   {
     "id": 161,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Viper",
     "trialNumber": 3,
     "trialStage": "Easy",
@@ -1281,7 +1281,7 @@
   },
   {
     "id": 162,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Viper",
     "trialNumber": 3,
     "trialStage": "Normal",
@@ -1289,7 +1289,7 @@
   },
   {
     "id": 163,
-    "difficulty": "Ultra Nightmare",
+    "difficulty": "UltraNightmare",
     "form": "Viper",
     "trialNumber": 3,
     "trialStage": "Hard",

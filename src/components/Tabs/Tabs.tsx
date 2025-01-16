@@ -23,7 +23,7 @@ const Tabs = ({
   const currentItem = items.find((i) => i.id === selected);
 
   return (
-    <Box direction="column">
+    <Root direction="column">
       <Navigation>
         {items.map((item) => (
           <Button
@@ -36,13 +36,16 @@ const Tabs = ({
         ))}
       </Navigation>
       <div>{currentItem ? children(currentItem) : null}</div>
-    </Box>
+    </Root>
   );
 };
 
-const Navigation = styled(Box, {
+const Root = styled(Box, {
   background: '$gray500',
-  padding: '$1',
+  padding: '$2',
+});
+
+const Navigation = styled(Box, {
   borderTopLeftRadius: '$1',
   borderTopRightRadius: '$1',
   gap: '$1',

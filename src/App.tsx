@@ -35,8 +35,8 @@ const globalStyles = globalCss({
   },
   '#root': {
     maxWidth: '1280px',
+    width: 'calc(100vw - 1rem)',
     margin: '0 auto',
-    padding: '2rem',
     textAlign: 'center',
   },
 });

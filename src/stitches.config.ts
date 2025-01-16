@@ -29,6 +29,8 @@ export const {
     },
     fontSizes: {
       1: '14px',
+      2: '18px',
+      3: '24px',
     },
     radii: {
       1: '4px',

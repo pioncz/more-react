@@ -1,8 +1,8 @@
 import { styled } from '@/stitches.config';
-import rewards from '@/store/rewards.json';
 import { Difficulty } from './RewardsHelper';
 import Tabs from '@/components/Tabs/Tabs';
 import { useState } from 'react';
+import RewardsTable from './RewardsTable';
 
 const Rewards = () => {
   const [selectedTab, setSelectedTab] = useState(Difficulty.Easy);
@@ -22,7 +22,7 @@ const Rewards = () => {
       >
         {(item) => (
           <div key={item.id} title={item.label}>
-            {item.content}
+            <RewardsTable difficulty={item.id} />
           </div>
         )}
       </Tabs>
