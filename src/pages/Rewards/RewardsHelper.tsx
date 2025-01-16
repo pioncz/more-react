@@ -13,7 +13,7 @@ const TrialDifficulties = ['Easy', 'Normal', 'Hard'];
 
 export const getRewardData = (difficulty: string, form: string) => {
   const formRewards = rewards.filter(
-    (r) => r.difficulty === difficulty && r.form === 'Ram',
+    (r) => r.difficulty === difficulty && r.form === form,
   );
 
   return TrialDifficulties.map((trialDifficulty) => {

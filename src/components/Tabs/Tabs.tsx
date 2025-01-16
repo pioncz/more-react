@@ -23,7 +23,7 @@ const Tabs = ({
   const currentItem = items.find((i) => i.id === selected);
 
   return (
-    <Root direction="column">
+    <Root flexDirection="column">
       <Navigation>
         {items.map((item) => (
           <Button

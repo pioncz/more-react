@@ -34,6 +34,8 @@ const Root = styled('div', {
   padding: '$3',
   border: '1px solid $gray100alpha',
   borderRadius: '$1',
+  background: '$gray800alpha',
+  backdropFilter: '$blurs$1',
 });
 
 export default Rewards;

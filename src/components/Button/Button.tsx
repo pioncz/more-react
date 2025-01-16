@@ -24,7 +24,7 @@ const Root = styled('button', {
   fontSize: '$1',
   padding: '$1 $3',
   border: 'none',
-  transition: '$default',
+  transition: '$1',
   cursor: 'pointer',
 
   '&:hover': {

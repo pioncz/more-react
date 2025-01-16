@@ -1,9 +1,10 @@
 import background from './assets/bg.jpg';
-import { Link, Route, Routes } from 'react-router';
+import { Route, Routes } from 'react-router';
 import Home from './pages/Home';
 import Team from './pages/Team';
 import Rewards from './pages/Rewards/Rewards';
 import { globalCss } from './stitches.config';
+import Navigation from './components/Navigation/Navigation';
 
 const globalStyles = globalCss({
   ':root': {
@@ -25,6 +26,7 @@ const globalStyles = globalCss({
     textRendering: 'optimizeLegibility',
     '-webkit-font-smoothing': 'antialiased',
     '-moz-osx-font-smoothing': 'grayscale',
+    userSelect: 'none',
   },
   body: {
     margin: 0,
@@ -46,9 +48,7 @@ const App = () => {
 
   return (
     <>
-      <Link to="/">Home</Link>
-      <Link to="/team">Team</Link>
-      <Link to="/rewards">Rewards</Link>
+      <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/team" element={<Team />} />

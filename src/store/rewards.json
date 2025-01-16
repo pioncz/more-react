@@ -397,7 +397,7 @@
     "form": "Viper",
     "trialNumber": 2,
     "trialStage": "Normal",
-    "rewards": "\"R. Gem"
+    "rewards": "R. Gem, E. Gem, 1* Basalt x 1"
   },
   {
     "id": 52,
@@ -613,7 +613,7 @@
     "form": "Viper",
     "trialNumber": 2,
     "trialStage": "Normal",
-    "rewards": "\"R. Gem"
+    "rewards": "R. Gem, E. Gem, 1* Basalt x 1"
   },
   {
     "id": 79,
@@ -829,7 +829,7 @@
     "form": "Viper",
     "trialNumber": 2,
     "trialStage": "Normal",
-    "rewards": "\"R. Gem"
+    "rewards": "R. Gem, E. Gem, 2* Basalt x 1"
   },
   {
     "id": 106,
@@ -1045,7 +1045,7 @@
     "form": "Viper",
     "trialNumber": 2,
     "trialStage": "Normal",
-    "rewards": "\"R. Gem"
+    "rewards": "R. Gem, L. Gem, 2* Basalt x 1"
   },
   {
     "id": 133,
@@ -1261,7 +1261,7 @@
     "form": "Viper",
     "trialNumber": 2,
     "trialStage": "Normal",
-    "rewards": "\"E. Gem"
+    "rewards": "E. Gem, L. Gem, 2* Basalt x 1"
   },
   {
     "id": 160,

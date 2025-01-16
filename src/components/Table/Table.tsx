@@ -18,7 +18,7 @@ const Table = ({
   }));
 
   return (
-    <Root direction="column">
+    <Root flexDirection="column">
       <TableHeader columns={columns} />
       {rows.map(({ id, cells }) => (
         <Box key={id}>
