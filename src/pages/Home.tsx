@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from 'react-router';
 
 const Home = () => {
   return (
@@ -7,7 +7,7 @@ const Home = () => {
       <Link to="/team">Team</Link>
       <Link to="/rewards">Rewards</Link>
     </>
-  )
+  );
 };
 
 export default Home;
