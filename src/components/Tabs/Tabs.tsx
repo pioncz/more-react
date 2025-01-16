@@ -43,6 +43,8 @@ const Tabs = ({
 const Root = styled(Box, {
   background: '$gray500',
   padding: '$2',
+  boxShadow: '$1',
+  borderRadius: '$1',
 });
 
 const Navigation = styled(Box, {

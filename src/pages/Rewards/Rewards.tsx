@@ -32,7 +32,7 @@ const Rewards = () => {
 
 const Root = styled('div', {
   padding: '$3',
-  border: '1px solid $gray100',
+  border: '1px solid $gray100alpha',
   borderRadius: '$1',
 });
 

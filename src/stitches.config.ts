@@ -12,6 +12,7 @@ export const {
 } = createStitches({
   theme: {
     colors: {
+      gray100alpha: '#6b6b7788',
       gray100: '#6b6b77',
       gray200: '#5D5D67',
       gray300: '#52525B',
@@ -34,6 +35,9 @@ export const {
     },
     radii: {
       1: '4px',
+    },
+    shadows: {
+      1: '0px 0px 30px 0px rgba(0, 0, 0, .07), 0px 30px 60px 0px rgba(0, 0, 0, .26), inset 0px 0px 1px 0px hsla(0, 0%, 100%, .25)',
     },
   },
   media: {
