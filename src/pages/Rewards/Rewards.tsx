@@ -3,6 +3,7 @@ import { Difficulty } from './RewardsHelper';
 import Tabs from '@/components/Tabs/Tabs';
 import { useState } from 'react';
 import RewardsTable from './RewardsTable';
+import Card from '@/components/Card/Card';
 
 const Rewards = () => {
   const [selectedTab, setSelectedTab] = useState(Difficulty.Easy);
@@ -14,7 +15,7 @@ const Rewards = () => {
   }));
 
   return (
-    <Root>
+    <Card>
       <Tabs
         items={tabItems}
         selected={selectedTab}
@@ -26,16 +27,8 @@ const Rewards = () => {
           </div>
         )}
       </Tabs>
-    </Root>
+    </Card>
   );
 };
-
-const Root = styled('div', {
-  padding: '$3',
-  border: '1px solid $gray100alpha',
-  borderRadius: '$1',
-  background: '$gray800alpha',
-  backdropFilter: '$blurs$1',
-});
 
 export default Rewards;

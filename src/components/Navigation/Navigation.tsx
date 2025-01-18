@@ -1,13 +1,16 @@
 import { styled } from '@/stitches.config';
 import { NavLink } from 'react-router';
 import Box from '@/components/Box/Box';
+import routes from '@/utils/routes';
 
 const Navigation = () => {
   return (
     <Root justifyContent="center">
-      <Button to="/">Home</Button>
-      <Button to="/team">Team</Button>
-      <Button to="/rewards">Rewards</Button>
+      {routes.map(({ path, label }) => (
+        <Button key={path} to={path}>
+          {label}
+        </Button>
+      ))}
     </Root>
   );
 };

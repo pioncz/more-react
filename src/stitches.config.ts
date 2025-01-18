@@ -20,7 +20,7 @@ export const {
       gray400: '#3F3F46',
       gray500: '#27272a',
       gray800alpha: 'rgba(0,0,0,.5)',
-      foreground: '#fff',
+      white100: '#dedede',
     },
     transitions: {
       1: 'all 0.2s ease-in-out',

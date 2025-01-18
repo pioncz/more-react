@@ -1085,7 +1085,7 @@
     "form": "Ram",
     "trialNumber": 1,
     "trialStage": "Easy",
-    "rewards": "E. Ocular Mass x 7"
+    "rewards": "R. Ocular Mass x 8"
   },
   {
     "id": 138,
@@ -1093,7 +1093,7 @@
     "form": "Ram",
     "trialNumber": 1,
     "trialStage": "Normal",
-    "rewards": "L. Ocular Mass x 6"
+    "rewards": "R. Ocular Mass x 15"
   },
   {
     "id": 139,
@@ -1101,7 +1101,7 @@
     "form": "Ram",
     "trialNumber": 1,
     "trialStage": "Hard",
-    "rewards": "M. Ocular Mass x 5"
+    "rewards": "E. Ocular Mass x 14"
   },
   {
     "id": 140,
@@ -1109,7 +1109,7 @@
     "form": "Ram",
     "trialNumber": 2,
     "trialStage": "Easy",
-    "rewards": "R. Gem, 2* Basalt x 1"
+    "rewards": "R. Ocular Mass x 9"
   },
   {
     "id": 141,
@@ -1117,7 +1117,7 @@
     "form": "Ram",
     "trialNumber": 2,
     "trialStage": "Normal",
-    "rewards": "E. Ocular Mass x 10"
+    "rewards": "M. Ocular Mass x 3"
   },
   {
     "id": 142,
@@ -1125,7 +1125,7 @@
     "form": "Ram",
     "trialNumber": 2,
     "trialStage": "Hard",
-    "rewards": "M. Ocular Mass x 4"
+    "rewards": "M. Ocular Mass x 5"
   },
   {
     "id": 143,
@@ -1133,7 +1133,7 @@
     "form": "Ram",
     "trialNumber": 3,
     "trialStage": "Easy",
-    "rewards": "R. Ocular Mass x 9"
+    "rewards": "R. Ocular Mass x 8"
   },
   {
     "id": 144,
@@ -1141,7 +1141,7 @@
     "form": "Ram",
     "trialNumber": 3,
     "trialStage": "Normal",
-    "rewards": "L. Ocular Mass x 6"
+    "rewards": "E. Gem, L. Gem, 2* Basalt x 1"
   },
   {
     "id": 145,
@@ -1157,7 +1157,7 @@
     "form": "Lion",
     "trialNumber": 1,
     "trialStage": "Easy",
-    "rewards": "E. Ocular Mass x 6"
+    "rewards": "R. Ocular Mass x 9"
   },
   {
     "id": 147,
@@ -1165,7 +1165,7 @@
     "form": "Lion",
     "trialNumber": 1,
     "trialStage": "Normal",
-    "rewards": "M. Ocular Mass x 3"
+    "rewards": "E. Ocular Mass x 9"
   },
   {
     "id": 148,
@@ -1173,7 +1173,7 @@
     "form": "Lion",
     "trialNumber": 1,
     "trialStage": "Hard",
-    "rewards": "M. Ocular Mass x 5"
+    "rewards": "L. Ocular Mass x 8"
   },
   {
     "id": 149,
@@ -1181,7 +1181,7 @@
     "form": "Lion",
     "trialNumber": 2,
     "trialStage": "Easy",
-    "rewards": "R. Ocular Mass x 8"
+    "rewards": "E. Ocular Mass x 7"
   },
   {
     "id": 150,
@@ -1189,7 +1189,7 @@
     "form": "Lion",
     "trialNumber": 2,
     "trialStage": "Normal",
-    "rewards": "E. Ocular Mass x 9"
+    "rewards": "L. Ocular Mass x 6"
   },
   {
     "id": 151,
@@ -1197,7 +1197,7 @@
     "form": "Lion",
     "trialNumber": 2,
     "trialStage": "Hard",
-    "rewards": "L. Ocular Mass x 8"
+    "rewards": "M. Ocular Mass x 5"
   },
   {
     "id": 152,
@@ -1205,7 +1205,7 @@
     "form": "Lion",
     "trialNumber": 3,
     "trialStage": "Easy",
-    "rewards": "R. Ocular Mass x 8"
+    "rewards": "R. Gem, 2* Basalt x 1"
   },
   {
     "id": 153,
@@ -1213,7 +1213,7 @@
     "form": "Lion",
     "trialNumber": 3,
     "trialStage": "Normal",
-    "rewards": "R. Ocular Mass x 15"
+    "rewards": "E. Ocular Mass x 10"
   },
   {
     "id": 154,
@@ -1221,7 +1221,7 @@
     "form": "Lion",
     "trialNumber": 3,
     "trialStage": "Hard",
-    "rewards": "E. Ocular Mass x 14"
+    "rewards": "M. Ocular Mass x 4"
   },
   {
     "id": 155,
@@ -1237,7 +1237,7 @@
     "form": "Viper",
     "trialNumber": 1,
     "trialStage": "Normal",
-    "rewards": "M. Ocular Mass x 3"
+    "rewards": "L. Ocular Mass x 6"
   },
   {
     "id": 157,
@@ -1245,7 +1245,7 @@
     "form": "Viper",
     "trialNumber": 1,
     "trialStage": "Hard",
-    "rewards": "M. Ocular Mass x 5"
+    "rewards": "L. Ocular Mass x 8"
   },
   {
     "id": 158,
@@ -1253,7 +1253,7 @@
     "form": "Viper",
     "trialNumber": 2,
     "trialStage": "Easy",
-    "rewards": "R. Ocular Mass x 8"
+    "rewards": "E. Ocular Mass x 6"
   },
   {
     "id": 159,
@@ -1261,7 +1261,7 @@
     "form": "Viper",
     "trialNumber": 2,
     "trialStage": "Normal",
-    "rewards": "E. Gem, L. Gem, 2* Basalt x 1"
+    "rewards": "M. Ocular Mass x 3"
   },
   {
     "id": 160,
@@ -1269,7 +1269,7 @@
     "form": "Viper",
     "trialNumber": 2,
     "trialStage": "Hard",
-    "rewards": "L. Ocular Mass x 8"
+    "rewards": "M. Ocular Mass x 5"
   },
   {
     "id": 161,
@@ -1277,7 +1277,7 @@
     "form": "Viper",
     "trialNumber": 3,
     "trialStage": "Easy",
-    "rewards": "R. Ocular Mass x 9"
+    "rewards": "R. Ocular Mass x 8"
   },
   {
     "id": 162,

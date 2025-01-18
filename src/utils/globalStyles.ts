@@ -7,7 +7,7 @@ const globalStyles = globalCss({
       'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
     lineHeight: '1.5',
     fontWeight: '400',
-    color: 'rgba(255, 255, 255, 0.87)',
+    color: '$white100',
     background: `linear-gradient(
           rgba(0, 0, 20, 0.8), 
           rgba(10, 0, 0, 0.9)
@@ -35,6 +35,9 @@ const globalStyles = globalCss({
     width: 'calc(100vw - 1rem)',
     margin: '0 auto',
     textAlign: 'center',
+  },
+  '*': {
+    boxSizing: 'border-box',
   },
 });
 
