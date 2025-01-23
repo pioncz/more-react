@@ -2,6 +2,7 @@ import Card from '@/components/Card/Card';
 import Input from '@/components/Input/Input';
 import { styled } from '@/stitches.config';
 import React from 'react';
+import ChampionsGrid from './ChampionsGrid';
 
 const Champions = () => {
   const [searchInput, setSearchInput] = React.useState('');
@@ -13,6 +14,7 @@ const Champions = () => {
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
       />
+      <ChampionsGrid />
     </StyledCard>
   );
 };

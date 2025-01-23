@@ -1,4 +1,3 @@
-import { styled } from '@/stitches.config';
 import { Difficulty } from './RewardsHelper';
 import Tabs from '@/components/Tabs/Tabs';
 import { useState } from 'react';
