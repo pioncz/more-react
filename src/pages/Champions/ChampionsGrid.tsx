@@ -22,12 +22,15 @@ const ChampionsGrid = ({
           onClick={onChampionClick}
         />
       ))}
+      {champions.length === 0 && <div>No champions found</div>}
     </Root>
   );
 };
 
 const Root = styled(Card, {
   display: 'flex',
+  width: 'fit-content',
+  margin: '0 auto',
   gap: '$2',
   justifyContent: 'center',
 });

@@ -23,7 +23,7 @@ const ChampionAvatar = ({
     <Root onClick={handleClick} selected={selected}>
       <Image
         src={BASE_URL + champion.image}
-        alt={champion.name}
+        alt={champion.champion}
         scale={isScaling}
         onAnimationEnd={() => setIsScaling(false)}
       />

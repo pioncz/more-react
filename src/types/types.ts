@@ -3,7 +3,7 @@ export type USER_CHAMPIONS = typeof USER_CHAMPIONS;
 
 export type Champion = {
   id: string;
-  name: string;
+  champion: string;
   image: string;
 };
 

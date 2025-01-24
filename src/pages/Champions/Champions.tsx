@@ -48,6 +48,10 @@ const Champions = () => {
     return <NetworkError error={error} />;
   }
 
+  const filteredData = data.filter(({ champion }) =>
+    champion.toLowerCase().includes(searchInput.toLowerCase()),
+  );
+
   return (
     <>
       <StyledCard>
@@ -58,7 +62,7 @@ const Champions = () => {
         />
       </StyledCard>
       <ChampionsGrid
-        champions={data}
+        champions={filteredData}
         onChampionClick={handleClick}
         userChampionIds={userChampionIds}
       />
