@@ -3,10 +3,26 @@ import Input from '@/components/Input/Input';
 import { styled } from '@/stitches.config';
 import React from 'react';
 import ChampionsGrid from './ChampionsGrid';
+import { useQuery } from '@tanstack/react-query';
+import { fetchChampions } from '@/utils/api';
+import Loader from '@/components/Loader/Loader';
+import NetworkError from '@/components/NetworkError/NetworkError';
 
 const Champions = () => {
   const [searchInput, setSearchInput] = React.useState('');
+  const { isPending, isError, data, error } = useQuery({
+    queryKey: ['todos'],
+    queryFn: fetchChampions,
+  });
 
+  if (isPending) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <NetworkError error={error} />;
+  }
+  console.log(data);
   return (
     <StyledCard>
       <StyledInput
