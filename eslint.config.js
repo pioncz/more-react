@@ -22,21 +22,27 @@ export default tseslint.config(
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-      reactQuery,
+      '@tanstack/query': reactQuery,
     },
     rules: {
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
+      ...reactQuery.configs.recommended.rules,
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
       ],
+      'no-console': 'error',
       'max-len': ['error', { code: 80 }],
-      '@tanstack/query/exhaustive-deps': 'error',
-      '@tanstack/query/no-deprecated-options': 'error',
-      '@tanstack/query/prefer-query-object-syntax': 'error',
-      '@tanstack/query/stable-query-client': 'error',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
     },
   },
 );

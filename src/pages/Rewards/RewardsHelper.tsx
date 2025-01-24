@@ -1,4 +1,4 @@
-import rewards from '@/store/rewards.json';
+import { Reward } from '@/types/types';
 
 export const Difficulty = {
   Easy: 'Easy',
@@ -9,18 +9,13 @@ export const Difficulty = {
   UltraNightmare: 'Ultra Nightmare',
 };
 
-export type Reward = {
-  id: number;
-  difficulty: string;
-  form: string;
-  trialNumber: number;
-  trialStage: string;
-  rewards: string;
-};
-
 const TrialDifficulties = ['Easy', 'Normal', 'Hard'];
 
-export const getRewardData = (difficulty: string, form: string) => {
+export const getRewardData = (
+  rewards: Reward[],
+  difficulty: string,
+  form: string,
+) => {
   const formRewards = rewards.filter(
     (r) => r.difficulty === difficulty && r.form === form,
   );

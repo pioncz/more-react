@@ -1,15 +1,18 @@
-import { getRewardData, type Reward } from './RewardsHelper';
+import { getRewardData } from './RewardsHelper';
 import { styled } from '@/stitches.config';
 import Table from '@/components/Table/Table';
+import { Reward } from '@/types/types';
 
 const RewardsSingleForm = ({
+  rewards,
   form,
   difficulty,
 }: {
+  rewards: Reward[];
   form: string;
   difficulty: string;
 }) => {
-  const data = getRewardData(difficulty, form);
+  const data = getRewardData(rewards, difficulty, form);
 
   return (
     <>
