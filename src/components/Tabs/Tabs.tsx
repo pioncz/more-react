@@ -30,6 +30,8 @@ const Tabs = ({
             key={item.id}
             selected={item.id === selected}
             onClick={() => onSelect(item.id)}
+            small
+            primary={false}
           >
             {item.label}
           </Button>

@@ -7,9 +7,9 @@ const Navigation = () => {
   return (
     <Root justifyContent="center">
       {routes.map(({ path, label }) => (
-        <Button key={path} to={path}>
+        <NavigationLink key={path} to={path}>
           {label}
-        </Button>
+        </NavigationLink>
       ))}
     </Root>
   );
@@ -26,7 +26,7 @@ const Root = styled(Box, {
   borderBottom: '1px solid $gray100alpha',
 });
 
-const Button = styled(NavLink, {
+const NavigationLink = styled(NavLink, {
   color: '#fff',
   display: 'flex',
   justifyContent: 'center',
