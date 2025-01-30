@@ -8,6 +8,7 @@ const Input = (
 };
 
 const Root = styled('input', {
+  width: '100%',
   padding: '$2',
   fontSize: '$2',
   border: 'none',

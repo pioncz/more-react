@@ -12,9 +12,13 @@ const ChampionsGrid = ({
   userChampionIds: string[];
   onChampionClick: (champion: Champion) => void;
 }) => {
+  const sortedChampions = champions.sort((a, b) =>
+    a.champion.localeCompare(b.champion),
+  );
+
   return (
     <Root>
-      {champions.map((champion) => (
+      {sortedChampions.map((champion) => (
         <ChampionAvatar
           key={champion.id}
           champion={champion}
@@ -29,6 +33,7 @@ const ChampionsGrid = ({
 
 const Root = styled(Card, {
   display: 'flex',
+  flexWrap: 'wrap',
   width: 'fit-content',
   margin: '0 auto',
   gap: '$2',

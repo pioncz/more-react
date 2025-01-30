@@ -1,14 +1,5 @@
 import { Reward } from '@/types/types';
 
-export const Difficulty = {
-  Easy: 'Easy',
-  Normal: 'Normal',
-  Hard: 'Hard',
-  Brutal: 'Brutal',
-  Nightmare: 'Nightmare',
-  UltraNightmare: 'Ultra Nightmare',
-};
-
 const TrialDifficulties = ['Easy', 'Normal', 'Hard'];
 
 export const getRewardData = (

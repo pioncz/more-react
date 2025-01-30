@@ -1,6 +1,6 @@
 import Home from '@/pages/Home';
 import Rewards from '@/pages/Rewards/Rewards';
-import Team from '@/pages/Team';
+import Team from '@/pages/Team/Team';
 import Champions from '@/pages/Champions/Champions';
 
 const routes = [

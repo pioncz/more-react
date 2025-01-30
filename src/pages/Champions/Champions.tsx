@@ -48,24 +48,24 @@ const Champions = () => {
     return <NetworkError error={error} />;
   }
 
-  const filteredData = data.filter(({ champion }) =>
-    champion.toLowerCase().includes(searchInput.toLowerCase()),
+  const filteredData = data.heroTypes.filter(({ name }) =>
+    name?.toLowerCase().includes(searchInput?.toLowerCase()),
   );
 
   return (
     <>
       <StyledCard>
-        <StyledInput
+        <Input
           placeholder="Search..."
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
         />
       </StyledCard>
-      <ChampionsGrid
+      {/* <ChampionsGrid
         champions={filteredData}
         onChampionClick={handleClick}
         userChampionIds={userChampionIds}
-      />
+      /> */}
     </>
   );
 };
@@ -73,10 +73,6 @@ const Champions = () => {
 const StyledCard = styled(Card, {
   width: 400,
   margin: '0 auto $4',
-});
-
-const StyledInput = styled(Input, {
-  width: '100%',
 });
 
 export default Champions;
