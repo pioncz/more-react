@@ -21,6 +21,10 @@ const Root = styled('input', {
   '&:hover': {
     borderColor: 'blue',
   },
+  '&[disabled]': {
+    background: '$gray700',
+    color: '$gray100',
+  },
 });
 
 export default Input;

@@ -3,12 +3,20 @@ import axios from 'axios';
 
 export const BASE_URL = 'http://localhost:3001/';
 
-export const fetchChampions = (): Promise<{
-  heroTypes: HeroType[];
-}> =>
-  axios
-    .get(`${BASE_URL}/share?sharedKey=tilKZHqHMy&_=1738164654794`)
-    .then((res) => res.data);
+export const fetchSharedAccount =
+  ({
+    sharedKey,
+    underscore,
+  }: {
+    sharedKey: string;
+    underscore: string;
+  }) =>
+  (): Promise<{
+    heroTypes: HeroType[];
+  }> =>
+    axios
+      .get(`${BASE_URL}/share?sharedKey=${sharedKey}&_=${underscore}`)
+      .then((res) => res.data);
 
 export const fetchRewards = (): Promise<Reward[]> =>
   axios.get(`${BASE_URL}static/Rewards.json`).then((res) => res.data);

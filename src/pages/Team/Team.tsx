@@ -4,7 +4,7 @@ import NetworkError from '@/components/NetworkError/NetworkError';
 import { styled } from '@/stitches.config';
 import { getUserChampionIds } from '@/store/selectors';
 import {
-  fetchChampions,
+  // fetchChampions,
   fetchRewards,
   fetchSkills,
   fetchTrials,
@@ -81,15 +81,15 @@ const Team = () => {
     return <NetworkError error={error} />;
   }
 
-  const teams = findChimeraTeams(
-    dataChampions,
-    dataTrials,
-    userChampionIds,
-    dataSkills,
-    dataRewards,
-    Difficulty.UltraNightmare,
-    { isStoneSkin: false, isIntercept: false },
-  );
+  // const teams = findChimeraTeams(
+  //   dataChampions,
+  //   dataTrials,
+  //   userChampionIds,
+  //   dataSkills,
+  //   dataRewards,
+  //   Difficulty.UltraNightmare,
+  //   { isStoneSkin: false, isIntercept: false },
+  // );
 
   return (
     <>

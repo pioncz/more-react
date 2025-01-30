@@ -4,7 +4,7 @@ import { styled } from '@/stitches.config';
 import React, { useCallback } from 'react';
 import ChampionsGrid from './ChampionsGrid';
 import { useQuery } from '@tanstack/react-query';
-import { fetchChampions } from '@/utils/api';
+import { fetchSharedAccount } from '@/utils/api';
 import Loader from '@/components/Loader/Loader';
 import NetworkError from '@/components/NetworkError/NetworkError';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,43 +14,43 @@ import { getUserChampionIds } from '@/store/selectors';
 
 const Champions = () => {
   const [searchInput, setSearchInput] = React.useState('');
-  const { isPending, isError, data, error } = useQuery({
-    queryKey: ['champions'],
-    queryFn: fetchChampions,
-  });
-  const dispatch = useDispatch();
-  const userChampionIds = useSelector(getUserChampionIds);
+  // const { isPending, isError, data, error } = useQuery({
+  //   queryKey: ['champions'],
+  //   queryFn: fetchSharedAccount,
+  // });
+  // const dispatch = useDispatch();
+  // const userChampionIds = useSelector(getUserChampionIds);
 
-  const handleClick = useCallback(
-    (champion: Champion) => {
-      if (userChampionIds.includes(champion.id)) {
-        dispatch(
-          userChampionsSlice.actions.removeUserChampionIdAction(
-            champion.id,
-          ),
-        );
-      } else {
-        dispatch(
-          userChampionsSlice.actions.addUserChampionIdAction(
-            champion.id,
-          ),
-        );
-      }
-    },
-    [dispatch, userChampionIds],
-  );
+  // const handleClick = useCallback(
+  //   (champion: Champion) => {
+  //     if (userChampionIds.includes(champion.id)) {
+  //       dispatch(
+  //         userChampionsSlice.actions.removeUserChampionIdAction(
+  //           champion.id,
+  //         ),
+  //       );
+  //     } else {
+  //       dispatch(
+  //         userChampionsSlice.actions.addUserChampionIdAction(
+  //           champion.id,
+  //         ),
+  //       );
+  //     }
+  //   },
+  //   [dispatch, userChampionIds],
+  // );
 
-  if (isPending) {
-    return <Loader />;
-  }
+  // if (isPending) {
+  //   return <Loader />;
+  // }
 
-  if (isError) {
-    return <NetworkError error={error} />;
-  }
+  // if (isError) {
+  //   return <NetworkError error={error} />;
+  // }
 
-  const filteredData = data.heroTypes.filter(({ name }) =>
-    name?.toLowerCase().includes(searchInput?.toLowerCase()),
-  );
+  // const filteredData = data.heroTypes.filter(({ name }) =>
+  //   name?.toLowerCase().includes(searchInput?.toLowerCase()),
+  // );
 
   return (
     <>

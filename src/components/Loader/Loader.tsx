@@ -1,7 +1,17 @@
 import { keyframes, styled } from '@/stitches.config';
+import { forwardRef } from 'react';
 
-const Loader = ({ className }: { className?: string }) => {
-  return <Root className={className} />;
+const Loader = (
+  {
+    style,
+    className,
+  }: {
+    style?: React.CSSProperties;
+    className?: string;
+  },
+  ref: React.RefObject<HTMLDivElement>,
+) => {
+  return <Root ref={ref} style={style} className={className} />;
 };
 
 const rotate = keyframes({
@@ -25,4 +35,4 @@ const Root = styled('div', {
   animation: `${rotate} 1s infinite linear`,
 });
 
-export default Loader;
+export default forwardRef(Loader);
