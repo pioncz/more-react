@@ -8,8 +8,13 @@ export type Champion = {
   skills: string;
 };
 
+export type SharedAccount = {
+  heroTypes: HeroType[];
+};
+
 export type UserChampionsStateType = {
-  data: string[];
+  sharedAccount?: SharedAccount | null;
+  selectedChampionIds: string[];
 };
 
 export type Reward = {

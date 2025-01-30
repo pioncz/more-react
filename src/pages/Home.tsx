@@ -44,6 +44,7 @@ const Home = () => {
     const newUnderscore = parsedUrl?.searchParams.get('_');
 
     if (newSharedKey && newUnderscore) {
+      setUrlError(null);
       setSharedKey(newSharedKey);
       setUnderscore(newUnderscore);
     } else {
@@ -53,7 +54,7 @@ const Home = () => {
 
   useEffect(() => {
     if (data && hhLink) {
-      localStorage.setItem('sharedLink', JSON.stringify(hhLink));
+      localStorage.setItem('sharedLink', hhLink);
       localStorage.setItem('sharedAccount', JSON.stringify(data));
       setIsLinked(true);
     }

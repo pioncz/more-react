@@ -1,4 +1,10 @@
-import { HeroType, Reward, Skill, Trial } from '@/types/types';
+import {
+  HeroType,
+  Reward,
+  SharedAccount,
+  Skill,
+  Trial,
+} from '@/types/types';
 import axios from 'axios';
 
 export const BASE_URL = 'http://localhost:3001/';
@@ -11,9 +17,7 @@ export const fetchSharedAccount =
     sharedKey: string;
     underscore: string;
   }) =>
-  (): Promise<{
-    heroTypes: HeroType[];
-  }> =>
+  (): Promise<SharedAccount> =>
     axios
       .get(`${BASE_URL}/share?sharedKey=${sharedKey}&_=${underscore}`)
       .then((res) => res.data);
