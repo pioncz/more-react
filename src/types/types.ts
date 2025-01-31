@@ -14,7 +14,7 @@ export type SharedAccount = {
 
 export type UserChampionsStateType = {
   sharedAccount?: SharedAccount | null;
-  selectedChampionIds: string[];
+  selectedChampionIds: number[];
 };
 
 export type Reward = {
@@ -140,6 +140,37 @@ export const Difficulty = {
 export type HeroType = {
   id: number;
   name: string;
-  faction: number;
+  fraction: number;
+  rarity: number;
   forms: { skillTypeIds: number[] }[];
 };
+
+export const Factions = [
+  '',
+  'Banner Lords',
+  'High Elves',
+  'Sacred Order',
+  'Dwarves',
+  'Ogryn Tribes',
+  'LizardMen',
+  'Skinwalkers',
+  'Orcs',
+  'Demonspawn',
+  'Undead Hordes', // 10
+  'Dark Elves',
+  'Knights Revenant',
+  'Barbarians',
+  'Sylvan Watchers',
+  'Shadowkin',
+  'Dwarves',
+];
+
+export const ChampionRarity = [
+  '',
+  'Common',
+  'Uncommon',
+  'Rare',
+  'Epic',
+  'Legendary',
+  'Mythical',
+];

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
+  SharedAccount,
   USER_CHAMPIONS,
   UserChampionsStateType,
 } from '@/types/types';
@@ -19,7 +20,7 @@ export const userChampionsSlice = createSlice({
   reducers: {
     selectChampionIdAction: (
       state: UserChampionsStateType,
-      { payload: championId }: PayloadAction<string>,
+      { payload: championId }: PayloadAction<number>,
     ) => {
       if (state.selectedChampionIds.some((id) => id === championId))
         return;
@@ -30,13 +31,19 @@ export const userChampionsSlice = createSlice({
     },
     unselectChampionIdAction: (
       state: UserChampionsStateType,
-      { payload: championId }: PayloadAction<string>,
+      { payload: championId }: PayloadAction<number>,
     ) => {
       const newData = state.selectedChampionIds.filter(
         (id) => id !== championId,
       );
       state.selectedChampionIds = newData;
       localStorage.setItem(USER_CHAMPIONS, JSON.stringify(newData));
+    },
+    setSharedAccountAction: (
+      state: UserChampionsStateType,
+      { payload: sharedAccount }: PayloadAction<SharedAccount>,
+    ) => {
+      state.sharedAccount = sharedAccount;
     },
   },
 });

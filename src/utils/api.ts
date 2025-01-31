@@ -20,7 +20,16 @@ export const fetchSharedAccount =
   (): Promise<SharedAccount> =>
     axios
       .get(`${BASE_URL}/share?sharedKey=${sharedKey}&_=${underscore}`)
-      .then((res) => res.data);
+      .then((res) => {
+        const heroTypes: HeroType[] = [];
+        res.data.heroTypes.forEach((hT: HeroType) => {
+          if (!heroTypes.some((h) => h.name === hT.name)) {
+            heroTypes.push(hT);
+          }
+        });
+
+        return { ...res.data, heroTypes };
+      });
 
 export const fetchRewards = (): Promise<Reward[]> =>
   axios.get(`${BASE_URL}static/Rewards.json`).then((res) => res.data);

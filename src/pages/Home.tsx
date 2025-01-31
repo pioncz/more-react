@@ -4,10 +4,12 @@ import Card from '@/components/Card/Card';
 import Input from '@/components/Input/Input';
 import Loader from '@/components/Loader/Loader';
 import { styled } from '@/stitches.config';
+import { userChampionsSlice } from '@/store/slices/userChampions.slice';
 import { fetchSharedAccount } from '@/utils/api';
 import { useQuery } from '@tanstack/react-query';
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 const Home = () => {
   const [hhLink, setHhLink] = useState(
@@ -33,6 +35,7 @@ const Home = () => {
   const [urlError, setUrlError] = useState<Error | null>();
   const isError = !!urlError || isFetchError;
   const errorMessage = urlError ? urlError?.message : error?.message;
+  const dispatch = useDispatch();
 
   const handleReset = () => {
     setHhLink('');
@@ -57,8 +60,11 @@ const Home = () => {
       localStorage.setItem('sharedLink', hhLink);
       localStorage.setItem('sharedAccount', JSON.stringify(data));
       setIsLinked(true);
+      dispatch(
+        userChampionsSlice.actions.setSharedAccountAction(data),
+      );
     }
-  }, [hhLink, data]);
+  }, [dispatch, hhLink, data]);
 
   return (
     <Root loading={isLoading}>

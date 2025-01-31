@@ -23,17 +23,15 @@ const globalStyles = globalCss({
     '-moz-osx-font-smoothing': 'grayscale',
     userSelect: 'none',
   },
-  body: {
+  'body, html': {
+    height: '100%',
     margin: 0,
-    display: 'flex',
-    placeItems: 'center',
-    minWidth: '320px',
-    minHeight: '100vh',
   },
   '#root': {
-    maxWidth: '1280px',
-    width: 'calc(100vw - 1rem)',
-    margin: '0 auto',
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    width: '100%',
     textAlign: 'center',
   },
   '*': {

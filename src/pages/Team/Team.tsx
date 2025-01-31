@@ -2,7 +2,7 @@ import Button from '@/components/Button/Button';
 import Loader from '@/components/Loader/Loader';
 import NetworkError from '@/components/NetworkError/NetworkError';
 import { styled } from '@/stitches.config';
-import { getUserChampionIds } from '@/store/selectors';
+import { getSelectedChampionIds } from '@/store/selectors';
 import {
   // fetchChampions,
   fetchRewards,
@@ -16,7 +16,7 @@ import { findChimeraTeams } from './TeamHelpers';
 import { Difficulty } from '@/types/types';
 
 const Team = () => {
-  const userChampionIds = useSelector(getUserChampionIds);
+  const selectedChampionIds = useSelector(getSelectedChampionIds);
   const navigate = useNavigate();
 
   const {

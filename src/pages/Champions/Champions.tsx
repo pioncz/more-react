@@ -3,54 +3,42 @@ import Input from '@/components/Input/Input';
 import { styled } from '@/stitches.config';
 import React, { useCallback } from 'react';
 import ChampionsGrid from './ChampionsGrid';
-import { useQuery } from '@tanstack/react-query';
-import { fetchSharedAccount } from '@/utils/api';
-import Loader from '@/components/Loader/Loader';
-import NetworkError from '@/components/NetworkError/NetworkError';
 import { useDispatch, useSelector } from 'react-redux';
 import { userChampionsSlice } from '@/store/slices/userChampions.slice';
-import { Champion } from '@/types/types';
-import { getUserChampionIds } from '@/store/selectors';
+import { HeroType } from '@/types/types';
+import {
+  getSelectedChampionIds,
+  getSharedAccount,
+} from '@/store/selectors';
 
 const Champions = () => {
+  const sharedAccount = useSelector(getSharedAccount);
+  const selectedChampionIds = useSelector(getSelectedChampionIds);
   const [searchInput, setSearchInput] = React.useState('');
-  // const { isPending, isError, data, error } = useQuery({
-  //   queryKey: ['champions'],
-  //   queryFn: fetchSharedAccount,
-  // });
-  // const dispatch = useDispatch();
-  // const userChampionIds = useSelector(getUserChampionIds);
+  const dispatch = useDispatch();
 
-  // const handleClick = useCallback(
-  //   (champion: Champion) => {
-  //     if (userChampionIds.includes(champion.id)) {
-  //       dispatch(
-  //         userChampionsSlice.actions.removeUserChampionIdAction(
-  //           champion.id,
-  //         ),
-  //       );
-  //     } else {
-  //       dispatch(
-  //         userChampionsSlice.actions.addUserChampionIdAction(
-  //           champion.id,
-  //         ),
-  //       );
-  //     }
-  //   },
-  //   [dispatch, userChampionIds],
-  // );
+  const handleClick = useCallback(
+    (champion: HeroType) => {
+      if (selectedChampionIds.includes(champion.id)) {
+        dispatch(
+          userChampionsSlice.actions.unselectChampionIdAction(
+            champion.id,
+          ),
+        );
+      } else {
+        dispatch(
+          userChampionsSlice.actions.selectChampionIdAction(
+            champion.id,
+          ),
+        );
+      }
+    },
+    [dispatch, selectedChampionIds],
+  );
 
-  // if (isPending) {
-  //   return <Loader />;
-  // }
-
-  // if (isError) {
-  //   return <NetworkError error={error} />;
-  // }
-
-  // const filteredData = data.heroTypes.filter(({ name }) =>
-  //   name?.toLowerCase().includes(searchInput?.toLowerCase()),
-  // );
+  const filteredData = sharedAccount?.heroTypes.filter(({ name }) =>
+    name?.toLowerCase().includes(searchInput?.toLowerCase()),
+  );
 
   return (
     <>
@@ -61,11 +49,11 @@ const Champions = () => {
           onChange={(e) => setSearchInput(e.target.value)}
         />
       </StyledCard>
-      {/* <ChampionsGrid
-        champions={filteredData}
+      <ChampionsGrid
+        heroTypes={filteredData}
         onChampionClick={handleClick}
-        userChampionIds={userChampionIds}
-      /> */}
+        selectedChampionIds={selectedChampionIds}
+      />
     </>
   );
 };

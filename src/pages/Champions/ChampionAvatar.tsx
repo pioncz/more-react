@@ -1,5 +1,5 @@
 import { keyframes, styled } from '@/stitches.config';
-import { Champion } from '@/types/types';
+import { ChampionRarity, Factions, HeroType } from '@/types/types';
 import { BASE_URL } from '@/utils/api';
 import { useState } from 'react';
 
@@ -8,11 +8,14 @@ const ChampionAvatar = ({
   selected,
   onClick,
 }: {
-  champion: Champion;
+  champion: HeroType;
   selected: boolean;
-  onClick: (champion: Champion) => void;
+  onClick: (champion: HeroType) => void;
 }) => {
   const [isScaling, setIsScaling] = useState(false);
+  const faction = Factions[champion?.fraction]?.replace(' ', '');
+  const rarity = ChampionRarity[champion.rarity];
+  const name = champion.name?.replaceAll(/[-\s']/g, '');
 
   const handleClick = () => {
     setIsScaling(true);
@@ -22,8 +25,9 @@ const ChampionAvatar = ({
   return (
     <Root onClick={handleClick} selected={selected}>
       <Image
-        src={BASE_URL + champion.image}
-        alt={champion.champion}
+        // eslint-disable-next-line max-len
+        src={`${BASE_URL}image?faction=${faction}&rarity=${rarity}&name=${name}`}
+        alt={champion.name + '-' + faction + '-' + champion?.fraction}
         scale={isScaling}
         onAnimationEnd={() => setIsScaling(false)}
       />

@@ -9,7 +9,7 @@ const Loader = (
     style?: React.CSSProperties;
     className?: string;
   },
-  ref: React.RefObject<HTMLDivElement>,
+  ref: React.ForwardedRef<HTMLDivElement>,
 ) => {
   return <Root ref={ref} style={style} className={className} />;
 };
