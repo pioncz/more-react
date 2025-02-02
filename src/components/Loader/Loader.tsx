@@ -5,13 +5,22 @@ const Loader = (
   {
     style,
     className,
+    inline = false,
   }: {
     style?: React.CSSProperties;
     className?: string;
+    inline?: boolean;
   },
   ref: React.ForwardedRef<HTMLDivElement>,
 ) => {
-  return <Root ref={ref} style={style} className={className} />;
+  return (
+    <Root
+      ref={ref}
+      style={style}
+      className={className}
+      inline={inline}
+    />
+  );
 };
 
 const rotate = keyframes({
@@ -20,11 +29,13 @@ const rotate = keyframes({
   },
 });
 
+const rotateInline = keyframes({
+  to: {
+    transform: 'rotate(1turn)',
+  },
+});
+
 const Root = styled('div', {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
   width: '50px',
   padding: '8px',
   aspectRatio: 1,
@@ -32,7 +43,22 @@ const Root = styled('div', {
   background: '$primary500',
   mask: 'conic-gradient(#0000 10%,#000), linear-gradient(#000 0 0) content-box',
   maskComposite: 'subtract',
-  animation: `${rotate} 1s infinite linear`,
+
+  variants: {
+    inline: {
+      true: {
+        margin: '0 auto',
+        animation: `${rotateInline} 1s infinite linear`,
+      },
+      false: {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        animation: `${rotate} 1s infinite linear`,
+      },
+    },
+  },
 });
 
 export default forwardRef(Loader);

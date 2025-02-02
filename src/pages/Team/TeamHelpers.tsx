@@ -183,7 +183,7 @@ const calculateTrialRewards = (
   );
 
   let rewards: string[] = [];
-  let trialsCompleted: number[] = [];
+  let completedTrialIds: number[] = [];
   grouppedTrials.forEach((grouppedTrial) => {
     const [groupRewards, trials] = getTrialsProgressRewards(
       grouppedTrial,
@@ -191,12 +191,12 @@ const calculateTrialRewards = (
     );
 
     rewards = [...rewards, ...groupRewards];
-    trialsCompleted = [...trialsCompleted, ...trials];
+    completedTrialIds = [...completedTrialIds, ...trials];
   });
 
   const score = getScoreFromRewards(rewards);
 
-  return [score, rewards, trialsCompleted];
+  return [score, rewards, completedTrialIds];
 };
 
 const groupTrials = (trials: Trial[], rewards: Reward[]) => {
@@ -287,7 +287,6 @@ export const findChimeraTeams = (
   skills: Skill[],
   rewards: Reward[],
   difficulty: string,
-  config: { isStoneSkin: boolean; isIntercept: boolean },
 ) => {
   const userChampions = champions.filter(
     (champion) => !ignoredChampionIds.includes(champion.id),
@@ -301,12 +300,13 @@ export const findChimeraTeams = (
     (champion) => champion.chimeraAbilities.size > 0,
   );
 
-  const allTeams = permutator(skillfulCharacters.slice(0, 5), 5);
+  const allTeams = permutator(skillfulCharacters.slice(0, 10), 5);
   const teamsWithScores: {
+    id: string;
     team: HeroType[];
     rewards: string[];
     score: number;
-    trialsCompleted: number[];
+    completedTrialIds: number[];
   }[] = [];
   const difficultyRewards = rewards.filter(
     (r) => r.difficulty === difficulty.replace(' ', ''),
@@ -314,16 +314,18 @@ export const findChimeraTeams = (
   const goruppedTrials = groupTrials(trials, difficultyRewards);
 
   allTeams.forEach((team) => {
-    const [score, rewards, trialsCompleted] = calculateTrialRewards(
+    const [score, rewards, completedTrialIds] = calculateTrialRewards(
       team,
       goruppedTrials,
     );
+    const id = team.map((hero) => hero.id).join('-');
 
     teamsWithScores.push({
+      id,
       team,
       rewards,
       score,
-      trialsCompleted,
+      completedTrialIds,
     });
   });
   teamsWithScores.sort((a, b) => b.score - a.score);

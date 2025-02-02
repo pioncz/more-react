@@ -12,6 +12,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { findChimeraTeams } from './TeamHelpers';
 import { Difficulty } from '@/types/types';
+import Card from '@/components/Card/Card';
+import TeamRow from './TeamRow';
 
 const Team = () => {
   const sharedAccount = useSelector(getSharedAccount);
@@ -63,6 +65,8 @@ const Team = () => {
     return <NetworkError error={error} />;
   }
 
+  const isTeamsPending = false;
+
   const teams = findChimeraTeams(
     sharedAccount?.heroTypes || [],
     dataTrials,
@@ -70,12 +74,16 @@ const Team = () => {
     dataSkills,
     dataRewards,
     Difficulty.UltraNightmare,
-    { isStoneSkin: false, isIntercept: false },
   );
 
   return (
     <>
-      <h1>Team</h1>
+      {isTeamsPending && (
+        <Card>
+          <h1>Searching for teams...</h1>
+          <Loader inline />
+        </Card>
+      )}
       {!sharedAccount?.heroTypes.length ? (
         <>
           <div>
@@ -89,6 +97,17 @@ const Team = () => {
           </div>
         </>
       ) : null}
+      {teams.length > 0 && (
+        <Card>
+          {teams.map((teamResult) => (
+            <TeamRow
+              key={teamResult.id}
+              result={teamResult}
+              trials={dataTrials}
+            />
+          ))}
+        </Card>
+      )}
     </>
   );
 };

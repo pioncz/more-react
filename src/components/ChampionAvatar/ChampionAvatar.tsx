@@ -9,21 +9,28 @@ const ChampionAvatar = ({
   onClick,
 }: {
   champion: HeroType;
-  selected: boolean;
-  onClick: (champion: HeroType) => void;
+  selected?: boolean;
+  onClick?: (champion: HeroType) => void;
 }) => {
   const [isScaling, setIsScaling] = useState(false);
   const faction = Factions[champion?.fraction]?.replace(' ', '');
   const rarity = ChampionRarity[champion.rarity];
   const name = champion.name?.replaceAll(/[-\s']/g, '');
+  const isSelected = !!(selected && onClick);
 
   const handleClick = () => {
-    setIsScaling(true);
-    onClick(champion);
+    if (onClick) {
+      setIsScaling(true);
+      onClick(champion);
+    }
   };
 
   return (
-    <Root onClick={handleClick} selected={selected}>
+    <Root
+      onClick={handleClick}
+      selected={isSelected}
+      selectable={!!onClick}
+    >
       <Image
         // eslint-disable-next-line max-len
         src={`${BASE_URL}image?faction=${faction}&rarity=${rarity}&name=${name}`}
@@ -40,15 +47,7 @@ const Root = styled('div', {
   padding: '$1',
   border: '1px solid $gray200',
   borderRadius: '$0',
-  opacity: 0.6,
-  filter: 'grayscale(80%)',
   transition: '$transitions$1',
-
-  '&:hover': {
-    border: '1px solid $white100',
-    opacity: 1,
-    filter: 'grayscale(0%)',
-  },
 
   variants: {
     selected: {
@@ -57,6 +56,18 @@ const Root = styled('div', {
         opacity: 1,
         filter: 'grayscale(0%)',
         background: '$error500',
+      },
+    },
+    selectable: {
+      true: {
+        filter: 'grayscale(80%)',
+        opacity: 0.6,
+
+        '&:hover': {
+          border: '1px solid $white100',
+          opacity: 1,
+          filter: 'grayscale(0%)',
+        },
       },
     },
   },

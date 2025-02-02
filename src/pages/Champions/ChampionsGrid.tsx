@@ -1,6 +1,6 @@
 import { styled } from '@/stitches.config';
 import { HeroType } from '@/types/types';
-import ChampionAvatar from './ChampionAvatar';
+import ChampionAvatar from '@/components/ChampionAvatar/ChampionAvatar';
 import Card from '@/components/Card/Card';
 
 const ChampionsGrid = ({
