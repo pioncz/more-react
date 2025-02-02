@@ -1,4 +1,5 @@
 import { styled } from '@/stitches.config';
+import Box from '../Box/Box';
 
 const Card = ({
   children,
@@ -7,10 +8,14 @@ const Card = ({
   children: React.ReactNode;
   className?: string;
 }) => {
-  return <Root className={className}>{children}</Root>;
+  return (
+    <Root className={className} flexDirection="column">
+      {children}
+    </Root>
+  );
 };
 
-const Root = styled('div', {
+const Root = styled(Box, {
   padding: '$4',
   border: '1px solid $gray100alpha',
   borderRadius: '$1',

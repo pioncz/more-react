@@ -1,34 +1,41 @@
 import { styled } from '@/stitches.config';
-import { Champion } from '@/types/types';
-import ChampionAvatar from './ChampionAvatar';
+import { HeroType } from '@/types/types';
+import ChampionAvatar from '@/components/ChampionAvatar/ChampionAvatar';
 import Card from '@/components/Card/Card';
 
 const ChampionsGrid = ({
-  champions,
-  userChampionIds,
+  heroTypes,
+  ignoredChampionIds,
   onChampionClick,
 }: {
-  champions: Champion[];
-  userChampionIds: string[];
-  onChampionClick: (champion: Champion) => void;
+  heroTypes: HeroType[] | undefined;
+  ignoredChampionIds: number[];
+  onChampionClick: (champion: HeroType) => void;
 }) => {
+  const sortedChampions =
+    heroTypes
+      ?.slice()
+      ?.sort((a, b) => a.name.localeCompare(b.name)) || [];
+
   return (
     <Root>
-      {champions.map((champion) => (
+      {sortedChampions.map((champion) => (
         <ChampionAvatar
           key={champion.id}
           champion={champion}
-          selected={userChampionIds.includes(champion.id)}
+          selected={ignoredChampionIds.includes(champion.id)}
           onClick={onChampionClick}
         />
       ))}
-      {champions.length === 0 && <div>No champions found</div>}
+      {sortedChampions.length === 0 && <div>No champions found</div>}
     </Root>
   );
 };
 
 const Root = styled(Card, {
   display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row !important',
   width: 'fit-content',
   margin: '0 auto',
   gap: '$2',

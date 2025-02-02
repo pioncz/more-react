@@ -1,5 +1,5 @@
 import { keyframes, styled } from '@/stitches.config';
-import { Champion } from '@/types/types';
+import { ChampionRarity, Factions, HeroType } from '@/types/types';
 import { BASE_URL } from '@/utils/api';
 import { useState } from 'react';
 
@@ -8,22 +8,33 @@ const ChampionAvatar = ({
   selected,
   onClick,
 }: {
-  champion: Champion;
-  selected: boolean;
-  onClick: (champion: Champion) => void;
+  champion: HeroType;
+  selected?: boolean;
+  onClick?: (champion: HeroType) => void;
 }) => {
   const [isScaling, setIsScaling] = useState(false);
+  const faction = Factions[champion?.fraction]?.replace(' ', '');
+  const rarity = ChampionRarity[champion.rarity];
+  const name = champion.name?.replaceAll(/[-\s']/g, '');
+  const isSelected = !!(selected && onClick);
 
   const handleClick = () => {
-    setIsScaling(true);
-    onClick(champion);
+    if (onClick) {
+      setIsScaling(true);
+      onClick(champion);
+    }
   };
 
   return (
-    <Root onClick={handleClick} selected={selected}>
+    <Root
+      onClick={handleClick}
+      selected={isSelected}
+      selectable={!!onClick}
+    >
       <Image
-        src={BASE_URL + champion.image}
-        alt={champion.champion}
+        // eslint-disable-next-line max-len
+        src={`${BASE_URL}image?faction=${faction}&rarity=${rarity}&name=${name}`}
+        alt={champion.name}
         scale={isScaling}
         onAnimationEnd={() => setIsScaling(false)}
       />
@@ -36,15 +47,7 @@ const Root = styled('div', {
   padding: '$1',
   border: '1px solid $gray200',
   borderRadius: '$0',
-  opacity: 0.6,
-  filter: 'grayscale(80%)',
   transition: '$transitions$1',
-
-  '&:hover': {
-    border: '1px solid $white100',
-    opacity: 1,
-    filter: 'grayscale(0%)',
-  },
 
   variants: {
     selected: {
@@ -52,7 +55,19 @@ const Root = styled('div', {
         border: '1px solid $white100',
         opacity: 1,
         filter: 'grayscale(0%)',
-        background: '$primary500',
+        background: '$error500',
+      },
+    },
+    selectable: {
+      true: {
+        filter: 'grayscale(80%)',
+        opacity: 0.6,
+
+        '&:hover': {
+          border: '1px solid $white100',
+          opacity: 1,
+          filter: 'grayscale(0%)',
+        },
       },
     },
   },

@@ -8,6 +8,7 @@ const Input = (
 };
 
 const Root = styled('input', {
+  width: '100%',
   padding: '$2',
   fontSize: '$2',
   border: 'none',
@@ -19,6 +20,10 @@ const Root = styled('input', {
   color: '$white100',
   '&:hover': {
     borderColor: 'blue',
+  },
+  '&[disabled]': {
+    background: '$gray700',
+    color: '$gray100',
   },
 });
 

@@ -8,6 +8,7 @@ const Button = ({
   onClick,
   small = false,
   primary = true,
+  disabled = false,
 }: {
   className?: string;
   children: React.ReactNode;
@@ -15,14 +16,22 @@ const Button = ({
   onClick?: () => void;
   small?: boolean;
   primary?: boolean;
+  disabled?: boolean;
 }) => {
+  const handleOnClick = () => {
+    if (!disabled && onClick) {
+      onClick();
+    }
+  };
+
   return (
     <Root
       selected={selected}
-      onClick={onClick}
+      onClick={handleOnClick}
       className={className}
       small={small}
       primary={primary}
+      disabled={disabled}
     >
       {children}
     </Root>
@@ -62,6 +71,12 @@ const Root = styled('button', {
         '&:hover': {
           backgroundColor: '$primary500',
         },
+      },
+    },
+    disabled: {
+      true: {
+        backgroundColor: '$gray700 !important',
+        cursor: 'default',
       },
     },
   },

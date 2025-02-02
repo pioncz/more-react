@@ -3,68 +3,60 @@ import Input from '@/components/Input/Input';
 import { styled } from '@/stitches.config';
 import React, { useCallback } from 'react';
 import ChampionsGrid from './ChampionsGrid';
-import { useQuery } from '@tanstack/react-query';
-import { fetchChampions } from '@/utils/api';
-import Loader from '@/components/Loader/Loader';
-import NetworkError from '@/components/NetworkError/NetworkError';
 import { useDispatch, useSelector } from 'react-redux';
 import { userChampionsSlice } from '@/store/slices/userChampions.slice';
-import { Champion } from '@/types/types';
-import { getUserChampionIds } from '@/store/selectors';
+import { HeroType } from '@/types/types';
+import {
+  getIgnoredChampionIds,
+  getSharedAccount,
+} from '@/store/selectors';
 
 const Champions = () => {
+  const sharedAccount = useSelector(getSharedAccount);
+  const ignoredChampionIds = useSelector(getIgnoredChampionIds);
   const [searchInput, setSearchInput] = React.useState('');
-  const { isPending, isError, data, error } = useQuery({
-    queryKey: ['champions'],
-    queryFn: fetchChampions,
-  });
   const dispatch = useDispatch();
-  const userChampionIds = useSelector(getUserChampionIds);
 
   const handleClick = useCallback(
-    (champion: Champion) => {
-      if (userChampionIds.includes(champion.id)) {
+    (champion: HeroType) => {
+      if (ignoredChampionIds.includes(champion.id)) {
         dispatch(
-          userChampionsSlice.actions.removeUserChampionIdAction(
+          userChampionsSlice.actions.removeIgnoredChampionIdAction(
             champion.id,
           ),
         );
       } else {
         dispatch(
-          userChampionsSlice.actions.addUserChampionIdAction(
+          userChampionsSlice.actions.addIgnoredChampionIdAction(
             champion.id,
           ),
         );
       }
     },
-    [dispatch, userChampionIds],
+    [dispatch, ignoredChampionIds],
   );
 
-  if (isPending) {
-    return <Loader />;
-  }
-
-  if (isError) {
-    return <NetworkError error={error} />;
-  }
-
-  const filteredData = data.filter(({ champion }) =>
-    champion.toLowerCase().includes(searchInput.toLowerCase()),
+  const filteredData = sharedAccount?.heroTypes.filter(({ name }) =>
+    name?.toLowerCase().includes(searchInput?.toLowerCase()),
   );
 
   return (
     <>
       <StyledCard>
-        <StyledInput
+        <p>
+          Select champions to ignore them. By default every champion
+          is taken into account
+        </p>
+        <Input
           placeholder="Search..."
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
         />
       </StyledCard>
       <ChampionsGrid
-        champions={filteredData}
+        heroTypes={filteredData}
         onChampionClick={handleClick}
-        userChampionIds={userChampionIds}
+        ignoredChampionIds={ignoredChampionIds}
       />
     </>
   );
@@ -72,11 +64,7 @@ const Champions = () => {
 
 const StyledCard = styled(Card, {
   width: 400,
-  margin: '0 auto $4',
-});
-
-const StyledInput = styled(Input, {
-  width: '100%',
+  margin: '$4 auto',
 });
 
 export default Champions;

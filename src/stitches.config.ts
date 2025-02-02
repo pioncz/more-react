@@ -21,8 +21,10 @@ export const {
       gray300: '#52525B',
       gray400: '#3F3F46',
       gray500: '#27272a',
+      gray700: '#141416FF',
       gray800alpha: 'rgba(0,0,0,.5)',
       white100: '#dedede',
+      error500: '#ff006f',
     },
     transitions: {
       1: 'all 0.2s ease-in-out',
