@@ -27,7 +27,7 @@ const ChampionAvatar = ({
       <Image
         // eslint-disable-next-line max-len
         src={`${BASE_URL}image?faction=${faction}&rarity=${rarity}&name=${name}`}
-        alt={champion.name + '-' + faction + '-' + champion?.fraction}
+        alt={champion.name}
         scale={isScaling}
         onAnimationEnd={() => setIsScaling(false)}
       />
@@ -56,7 +56,7 @@ const Root = styled('div', {
         border: '1px solid $white100',
         opacity: 1,
         filter: 'grayscale(0%)',
-        background: '$primary500',
+        background: '$error500',
       },
     },
   },

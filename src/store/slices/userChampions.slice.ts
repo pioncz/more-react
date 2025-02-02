@@ -6,8 +6,8 @@ import {
 } from '@/types/types';
 
 const userChampionsInitialState: UserChampionsStateType = {
-  selectedChampionIds: JSON.parse(
-    localStorage.getItem('selectedChampionIds') || '[]',
+  ignoredChampionIds: JSON.parse(
+    localStorage.getItem('ignoredChampionIds') || '[]',
   ),
   sharedAccount: JSON.parse(
     localStorage.getItem('sharedAccount') || 'null',
@@ -18,26 +18,32 @@ export const userChampionsSlice = createSlice({
   name: USER_CHAMPIONS,
   initialState: userChampionsInitialState,
   reducers: {
-    selectChampionIdAction: (
+    addIgnoredChampionIdAction: (
       state: UserChampionsStateType,
       { payload: championId }: PayloadAction<number>,
     ) => {
-      if (state.selectedChampionIds.some((id) => id === championId))
+      if (state.ignoredChampionIds.some((id) => id === championId))
         return;
 
-      const newData = [...state.selectedChampionIds, championId];
-      localStorage.setItem(USER_CHAMPIONS, JSON.stringify(newData));
-      state.selectedChampionIds = newData;
+      const newData = [...state.ignoredChampionIds, championId];
+      localStorage.setItem(
+        'ignoredChampionIds',
+        JSON.stringify(newData),
+      );
+      state.ignoredChampionIds = newData;
     },
-    unselectChampionIdAction: (
+    removeIgnoredChampionIdAction: (
       state: UserChampionsStateType,
       { payload: championId }: PayloadAction<number>,
     ) => {
-      const newData = state.selectedChampionIds.filter(
+      const newData = state.ignoredChampionIds.filter(
         (id) => id !== championId,
       );
-      state.selectedChampionIds = newData;
-      localStorage.setItem(USER_CHAMPIONS, JSON.stringify(newData));
+      state.ignoredChampionIds = newData;
+      localStorage.setItem(
+        'ignoredChampionIds',
+        JSON.stringify(newData),
+      );
     },
     setSharedAccountAction: (
       state: UserChampionsStateType,

@@ -1,20 +1,13 @@
 export const USER_CHAMPIONS = 'userChampions';
 export type USER_CHAMPIONS = typeof USER_CHAMPIONS;
 
-export type Champion = {
-  id: string;
-  champion: string;
-  image: string;
-  skills: string;
-};
-
 export type SharedAccount = {
   heroTypes: HeroType[];
 };
 
 export type UserChampionsStateType = {
   sharedAccount?: SharedAccount | null;
-  selectedChampionIds: number[];
+  ignoredChampionIds: number[];
 };
 
 export type Reward = {
@@ -44,7 +37,7 @@ export type SkillAbilityName =
   | 'HP Burn'
   | 'Block Debuffs'
   | 'Stun'
-  | 'Increase Defence'
+  | 'Increase Defense'
   | 'Increase Resistance'
   | 'Continuous Heal'
   | 'Block Damage'
@@ -74,7 +67,9 @@ export type SkillAbilityName =
   | 'Ally Attack'
   | 'Pain Link'
   | 'Revive'
-  | 'Smite';
+  | 'Smite'
+  | 'Stone Skin'
+  | 'Intercept';
 
 export type SkillAbility = {
   name: SkillAbilityName;
@@ -102,8 +97,16 @@ export type SkillMultiplier = {
   target: string;
 };
 
+export type SkillEffect = {
+  id: number;
+  kindId: number;
+  applyStatusEffectParams: {
+    statusEffectInfos: { typeId: number }[];
+  };
+};
+
 export type Skill = {
-  id: string;
+  id: number;
   name: string;
   description: string;
   cooldown: string;
@@ -111,6 +114,8 @@ export type Skill = {
   abilities: SkillAbility[];
   books: SkillBook[];
   multiplier: SkillMultiplier[];
+  damageMultiplier?: string;
+  effects: SkillEffect[];
 };
 
 export type TrialCondition = {

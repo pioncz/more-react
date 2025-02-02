@@ -5,11 +5,11 @@ import Card from '@/components/Card/Card';
 
 const ChampionsGrid = ({
   heroTypes,
-  selectedChampionIds,
+  ignoredChampionIds,
   onChampionClick,
 }: {
   heroTypes: HeroType[] | undefined;
-  selectedChampionIds: number[];
+  ignoredChampionIds: number[];
   onChampionClick: (champion: HeroType) => void;
 }) => {
   const sortedChampions =
@@ -23,7 +23,7 @@ const ChampionsGrid = ({
         <ChampionAvatar
           key={champion.id}
           champion={champion}
-          selected={selectedChampionIds.includes(champion.id)}
+          selected={ignoredChampionIds.includes(champion.id)}
           onClick={onChampionClick}
         />
       ))}

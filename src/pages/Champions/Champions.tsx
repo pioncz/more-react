@@ -7,33 +7,33 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userChampionsSlice } from '@/store/slices/userChampions.slice';
 import { HeroType } from '@/types/types';
 import {
-  getSelectedChampionIds,
+  getIgnoredChampionIds,
   getSharedAccount,
 } from '@/store/selectors';
 
 const Champions = () => {
   const sharedAccount = useSelector(getSharedAccount);
-  const selectedChampionIds = useSelector(getSelectedChampionIds);
+  const ignoredChampionIds = useSelector(getIgnoredChampionIds);
   const [searchInput, setSearchInput] = React.useState('');
   const dispatch = useDispatch();
 
   const handleClick = useCallback(
     (champion: HeroType) => {
-      if (selectedChampionIds.includes(champion.id)) {
+      if (ignoredChampionIds.includes(champion.id)) {
         dispatch(
-          userChampionsSlice.actions.unselectChampionIdAction(
+          userChampionsSlice.actions.removeIgnoredChampionIdAction(
             champion.id,
           ),
         );
       } else {
         dispatch(
-          userChampionsSlice.actions.selectChampionIdAction(
+          userChampionsSlice.actions.addIgnoredChampionIdAction(
             champion.id,
           ),
         );
       }
     },
-    [dispatch, selectedChampionIds],
+    [dispatch, ignoredChampionIds],
   );
 
   const filteredData = sharedAccount?.heroTypes.filter(({ name }) =>
@@ -43,6 +43,10 @@ const Champions = () => {
   return (
     <>
       <StyledCard>
+        <p>
+          Select champions to ignore them. By default every champion
+          is taken into account
+        </p>
         <Input
           placeholder="Search..."
           value={searchInput}
@@ -52,7 +56,7 @@ const Champions = () => {
       <ChampionsGrid
         heroTypes={filteredData}
         onChampionClick={handleClick}
-        selectedChampionIds={selectedChampionIds}
+        ignoredChampionIds={ignoredChampionIds}
       />
     </>
   );
@@ -60,7 +64,7 @@ const Champions = () => {
 
 const StyledCard = styled(Card, {
   width: 400,
-  margin: '0 auto $4',
+  margin: '$4 auto',
 });
 
 export default Champions;

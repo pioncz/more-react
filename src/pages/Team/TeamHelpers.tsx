@@ -1,14 +1,12 @@
 import {
-  Champion,
+  HeroType,
   Reward,
   Skill,
   SkillAbilityName,
   Trial,
   TrialCondition,
 } from '@/types/types';
-import { flattenArray } from '@/utils/helpers';
-
-type TrialWithReward = { rewards: string } & Trial;
+import flatten from 'lodash/flatten';
 
 const TrialStages = ['Easy', 'Normal', 'Hard'];
 
@@ -37,7 +35,7 @@ const ImportantAbilities: SkillAbilityName[] = [
   'Increase Attack',
   'Decrease Attack',
   'Decrease Defense',
-  'Increase Defence',
+  'Increase Defense',
   'Decrease Accuracy',
   'Increase Accuracy',
   'Poison Sensitivity',
@@ -47,6 +45,43 @@ const ImportantAbilities: SkillAbilityName[] = [
   'Increase Critical Rate',
   'Increase Critical Damage',
 ];
+
+const AbilityNameMap: Record<string, SkillAbilityName> = {
+  'Decrease ATK': 'Decrease Attack',
+  'Decrease SPD': 'Decrease Speed',
+  'Increase ATK': 'Increase Attack',
+  'Increase SPD': 'Increase Speed',
+  'Increase C. DMG': 'Increase Critical Damage',
+  'Increase C. RATE': 'Increase Critical Rate',
+  'Increase ACC': 'Increase Accuracy',
+  'Decrease ACC': 'Decrease Accuracy',
+  'Increase DEF': 'Increase Defense',
+  'Decrease DEF': 'Decrease Defense',
+  'Increase RES': 'Increase Resistance',
+  'Decrease RES': 'Decrease Resistance',
+  'Perfect Veil': 'Veil',
+  'True Fear': 'Fear',
+  'Block debuffs': 'Block Debuffs',
+  ///
+  Sleep: 'Sleep',
+  Stun: 'Sleep',
+  'Continuous Heal': 'Sleep',
+  Provoke: 'Sleep',
+  Strengthen: 'Sleep',
+  Enfeeble: 'Sleep',
+  Freeze: 'Sleep',
+  'Heal Reduction': 'Sleep',
+  Taunt: 'Sleep',
+  'Ally Protection': 'Sleep',
+  'Decrease C. RATE': 'Sleep',
+  'Decrease C. DMG': 'Sleep',
+  'Decrease C.RATE': 'Sleep',
+  Bomb: 'Sleep',
+  'Revive On Death': 'Sleep',
+  'Revive on Death': 'Sleep',
+  Hex: 'Sleep',
+  Petrification: 'Sleep',
+};
 
 function permutator<T>(inputArr: T[], length: number): T[][] {
   const result: T[][] = [];
@@ -86,22 +121,25 @@ const getTrialsProgressRewards = (
     rewards?: string;
   } & Trial)[],
   abilities: SkillAbilityName[],
-) => {
+): [string[], number[]] => {
   const rewards: string[] = [];
+  const trialsCompleted: number[] = [];
 
-  trials.forEach((t) => {
+  for (let i = 0; i < trials.length; i++) {
+    const t = trials[i];
     const meetConditions = doesTeamMeetConditions(
       t.conditions,
       abilities,
     );
     if (meetConditions && t.rewards) {
       rewards.push(t.rewards);
+      trialsCompleted.push(t.id);
     } else {
-      return rewards;
+      return [rewards, trialsCompleted];
     }
-  });
+  }
 
-  return rewards;
+  return [rewards, trialsCompleted];
 };
 
 const getRewardType = (reward: string) => {
@@ -137,26 +175,28 @@ const getScoreFromRewards = (rewards: string[]) =>
   }, 0);
 
 const calculateTrialRewards = (
-  team: ({ chimeraAbilities: SkillAbilityName[] } & Champion)[],
+  team: ({ chimeraAbilities: Set<SkillAbilityName> } & HeroType)[],
   grouppedTrials: ({ rewards?: string } & Trial)[][],
-): [number, string[]] => {
-  const teamAbilities = flattenArray(
-    team.map((c) => c.chimeraAbilities),
+): [number, string[], number[]] => {
+  const teamAbilities = flatten(
+    team.map((c) => Array.from(c.chimeraAbilities)),
   );
 
   let rewards: string[] = [];
+  let trialsCompleted: number[] = [];
   grouppedTrials.forEach((grouppedTrial) => {
-    const groupRewards = getTrialsProgressRewards(
+    const [groupRewards, trials] = getTrialsProgressRewards(
       grouppedTrial,
       teamAbilities,
     );
 
     rewards = [...rewards, ...groupRewards];
+    trialsCompleted = [...trialsCompleted, ...trials];
   });
 
   const score = getScoreFromRewards(rewards);
 
-  return [score, rewards];
+  return [score, rewards, trialsCompleted];
 };
 
 const groupTrials = (trials: Trial[], rewards: Reward[]) => {
@@ -192,125 +232,101 @@ const groupTrials = (trials: Trial[], rewards: Reward[]) => {
 };
 
 const getChampionsChimeraAbilities = (
-  champion: Champion,
+  champion: HeroType,
   skills: Skill[],
 ) => {
-  const championSkills = champion.skills
-    .split(',')
-    .map((skillId) => skills.find((s) => s.id === skillId))
+  const championSkillIds: number[] = flatten(
+    champion.forms.map((f) => f.skillTypeIds),
+  );
+  const championSkills = championSkillIds
+    .map((skillId) => skills.find((s) => s.id === Number(skillId)))
     .filter((v) => v !== undefined);
-  const chimeraAbilities: SkillAbilityName[] = flattenArray(
-    championSkills.map((s) => s.abilities.map((a) => a.name)),
-  ).filter((ability) => ImportantAbilities.includes(ability));
-  // TODO: Ally attack
+
+  const regex = /\[([^\]]*)]/g;
+  const chimeraAbilities = new Set<SkillAbilityName>([]);
+  championSkills.forEach((cS) => {
+    const matches = cS.description.matchAll(regex);
+
+    for (const match of matches) {
+      if (match?.[1]) {
+        const rawAbility = match?.[1];
+        const ability = AbilityNameMap[rawAbility] || rawAbility;
+
+        if (ImportantAbilities.indexOf(ability) > -1) {
+          chimeraAbilities.add(ability);
+        }
+      }
+    }
+  });
   const hasReviveSkill = championSkills.some((s) =>
     s.description.toLowerCase().includes('revive'),
   );
   if (hasReviveSkill) {
-    chimeraAbilities.push('Revive');
+    chimeraAbilities.add('Revive');
   }
   const hasMaxHpSkill = championSkills.some((s) =>
-    s.multiplier.some((m) => m.multiplier.includes('TRG_HP')),
+    s.damageMultiplier?.includes('TRG_HP'),
   );
   if (hasMaxHpSkill) {
-    chimeraAbilities.push('Max HP');
+    chimeraAbilities.add('Max HP');
   }
   const hasAllyAttackSkill = championSkills.some((s) =>
     s.description.toLowerCase().includes('teams up'),
   );
   if (hasAllyAttackSkill) {
-    chimeraAbilities.push('Ally Attack');
+    chimeraAbilities.add('Ally Attack');
   }
+
   return chimeraAbilities;
 };
 
 export const findChimeraTeams = (
-  champions: ({ chimeraAbilities: SkillAbilityName[] } & Champion)[],
+  champions: HeroType[],
   trials: Trial[],
-  userChampionIds: string[],
+  ignoredChampionIds: number[],
   skills: Skill[],
   rewards: Reward[],
   difficulty: string,
   config: { isStoneSkin: boolean; isIntercept: boolean },
 ) => {
-  const userChampionsWithAbilities = champions
-    .filter((champion) => userChampionIds.includes(champion.id))
-    .map((c) => ({
-      ...c,
-      chimeraAbilities: getChampionsChimeraAbilities(c, skills),
-    }));
-  const revivers = userChampionsWithAbilities
-    .filter(
-      ({ champion }) =>
-        [
-          'Lady Mikage',
-          'Androc The Glorious',
-          'Aphidus The Hivelord',
-        ].indexOf(champion) > -1,
-    )
-    .map((u) => ({
-      ...u,
-      skills2: u.skills
-        .split(',')
-        .map((s) => skills.find((s2) => s2.id === s)),
-    }));
+  const userChampions = champions.filter(
+    (champion) => !ignoredChampionIds.includes(champion.id),
+  );
+  const championsWithAbilities = userChampions.map((c) => ({
+    ...c,
+    chimeraAbilities: getChampionsChimeraAbilities(c, skills),
+  }));
 
-  console.log('----');
-  console.log(userChampionsWithAbilities);
-  console.log(revivers);
-
-  // teams up
-
-  const skillfulCharacters = userChampionsWithAbilities.filter(
-    (champion) => champion.chimeraAbilities.length > 0,
+  const skillfulCharacters = championsWithAbilities.filter(
+    (champion) => champion.chimeraAbilities.size > 0,
   );
 
-  // const allTeams = permutator(skillfulCharacters.slice(0, 100), 5);
-  // const teamsWithScores: {
-  //   team: Champion[];
-  //   rewards: Reward[];
-  //   score: number;
-  // }[] = [];
+  const allTeams = permutator(skillfulCharacters.slice(0, 5), 5);
+  const teamsWithScores: {
+    team: HeroType[];
+    rewards: string[];
+    score: number;
+    trialsCompleted: number[];
+  }[] = [];
+  const difficultyRewards = rewards.filter(
+    (r) => r.difficulty === difficulty.replace(' ', ''),
+  );
+  const goruppedTrials = groupTrials(trials, difficultyRewards);
 
-  // const difficultyRewards = rewards.filter(
-  //   (r) => r.difficulty === difficulty.replace(' ', ''),
-  // );
+  allTeams.forEach((team) => {
+    const [score, rewards, trialsCompleted] = calculateTrialRewards(
+      team,
+      goruppedTrials,
+    );
 
-  // const goruppedTrials = groupTrials(trials, difficultyRewards);
+    teamsWithScores.push({
+      team,
+      rewards,
+      score,
+      trialsCompleted,
+    });
+  });
+  teamsWithScores.sort((a, b) => b.score - a.score);
 
-  // allTeams.forEach((team) => {
-  //   const [score, rewards] = calculateTrialRewards(
-  //     team,
-  //     goruppedTrials,
-  //   );
-
-  //   teamsWithScores.push({
-  //     team,
-  //     rewards,
-  //     score,
-  //   });
-  // });
-  // teamsWithScores.sort((a, b) => b.score - a.score);
-  // console.log(teamsWithScores.slice(0, 100));
-
-  // console.log(champions.find((c) => c.champion === 'Cleopterix'));
-  // console.log(
-  //   skills.filter((s) =>
-  //     [
-  //       62301,
-  //       62302,
-  //       62303,
-  //       62304,
-  //       '62301',
-  //       '62302',
-  //       '62303',
-  //       '62304',
-  //     ].includes(s.id),
-  //   ),
-  // );
-
-  // ? Mark each champion with important ability
-  // For each team permutation count the number of rewards it can get
-  // For each permutation count score: rare mats + 10 * epic mats + 100 * legendary mats + 1000 * mythic mats
-  return [];
+  return teamsWithScores;
 };

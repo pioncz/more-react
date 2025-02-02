@@ -2,13 +2,11 @@ import Button from '@/components/Button/Button';
 import Loader from '@/components/Loader/Loader';
 import NetworkError from '@/components/NetworkError/NetworkError';
 import { styled } from '@/stitches.config';
-import { getSelectedChampionIds } from '@/store/selectors';
 import {
-  // fetchChampions,
-  fetchRewards,
-  fetchSkills,
-  fetchTrials,
-} from '@/utils/api';
+  getIgnoredChampionIds,
+  getSharedAccount,
+} from '@/store/selectors';
+import { fetchRewards, fetchSkills, fetchTrials } from '@/utils/api';
 import { useQuery } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -16,18 +14,10 @@ import { findChimeraTeams } from './TeamHelpers';
 import { Difficulty } from '@/types/types';
 
 const Team = () => {
-  const selectedChampionIds = useSelector(getSelectedChampionIds);
+  const sharedAccount = useSelector(getSharedAccount);
+  const ignoredChampionIds = useSelector(getIgnoredChampionIds);
   const navigate = useNavigate();
 
-  const {
-    isPending: isPendingChampions,
-    isError: isErrorChampions,
-    data: dataChampions,
-    error: errorChampions,
-  } = useQuery({
-    queryKey: ['champions'],
-    queryFn: fetchChampions,
-  });
   const {
     isPending: isPendingTrials,
     isError: isErrorTrials,
@@ -57,17 +47,9 @@ const Team = () => {
   });
 
   const isPending =
-    isPendingChampions ||
-    isPendingTrials ||
-    isPendingSkills ||
-    isPendingRewards;
-  const isError =
-    isErrorChampions ||
-    isErrorTrials ||
-    isErrorSkills ||
-    isErrorRewards;
-  const error =
-    errorChampions || errorTrials || errorSkills || errorRewards;
+    isPendingTrials || isPendingSkills || isPendingRewards;
+  const isError = isErrorTrials || isErrorSkills || isErrorRewards;
+  const error = errorTrials || errorSkills || errorRewards;
 
   const handleChampionsClick = () => {
     navigate('/champions');
@@ -81,20 +63,20 @@ const Team = () => {
     return <NetworkError error={error} />;
   }
 
-  // const teams = findChimeraTeams(
-  //   dataChampions,
-  //   dataTrials,
-  //   userChampionIds,
-  //   dataSkills,
-  //   dataRewards,
-  //   Difficulty.UltraNightmare,
-  //   { isStoneSkin: false, isIntercept: false },
-  // );
+  const teams = findChimeraTeams(
+    sharedAccount?.heroTypes || [],
+    dataTrials,
+    ignoredChampionIds,
+    dataSkills,
+    dataRewards,
+    Difficulty.UltraNightmare,
+    { isStoneSkin: false, isIntercept: false },
+  );
 
   return (
     <>
       <h1>Team</h1>
-      {!userChampionIds.length ? (
+      {!sharedAccount?.heroTypes.length ? (
         <>
           <div>
             To find a team you need to select what champions you have.

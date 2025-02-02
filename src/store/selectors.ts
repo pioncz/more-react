@@ -1,7 +1,7 @@
 import { StateType } from './rootReducer';
 
-export const getSelectedChampionIds = (state: StateType) =>
-  state.userChampions.selectedChampionIds;
+export const getIgnoredChampionIds = (state: StateType) =>
+  state.userChampions.ignoredChampionIds;
 
 export const getSharedAccount = (state: StateType) =>
   state.userChampions.sharedAccount;
