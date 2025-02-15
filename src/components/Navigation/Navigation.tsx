@@ -16,6 +16,9 @@ const Navigation = () => {
 };
 
 const Root = styled(Box, {
+  position: 'sticky',
+  top: 0,
+  zIndex: 1000,
   width: '100%',
   height: '60px',
   background: '$gray800alpha',

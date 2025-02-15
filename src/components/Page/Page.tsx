@@ -12,6 +12,7 @@ const Page = ({ children }: { children: React.ReactNode }) => {
 const Root = styled(Box, {
   flex: '1 1',
   gap: '$4',
+  padding: '$4',
 });
 
 export default Page;
