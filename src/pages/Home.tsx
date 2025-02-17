@@ -5,7 +5,7 @@ import Input from '@/components/Input/Input';
 import Loader from '@/components/Loader/Loader';
 import { styled } from '@/stitches.config';
 import { userChampionsSlice } from '@/store/slices/userChampions.slice';
-import { fetchSharedAccount } from '@/utils/api';
+import { fetchSharedAccount } from '@/lib/api';
 import { useQuery } from '@tanstack/react-query';
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useState } from 'react';

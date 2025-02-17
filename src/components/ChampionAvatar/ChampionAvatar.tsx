@@ -1,6 +1,6 @@
 import { keyframes, styled } from '@/stitches.config';
 import { ChampionRarity, Factions, HeroType } from '@/types/types';
-import { BASE_URL } from '@/utils/api';
+import { BASE_URL } from '@/lib/api';
 import { useState } from 'react';
 
 const ChampionAvatar = ({

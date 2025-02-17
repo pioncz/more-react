@@ -3,7 +3,7 @@ import { useState } from 'react';
 import RewardsTable from './RewardsTable';
 import Card from '@/components/Card/Card';
 import { useQuery } from '@tanstack/react-query';
-import { fetchRewards } from '@/utils/api';
+import { fetchRewards } from '@/lib/api';
 import Loader from '@/components/Loader/Loader';
 import NetworkError from '@/components/NetworkError/NetworkError';
 import { Difficulty } from '@/types/types';

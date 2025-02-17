@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router';
 import Navigation from './components/Navigation/Navigation';
 import { AnimatePresence, motion } from 'motion/react';
-import globalStyles from './utils/globalStyles';
-import routes from './utils/routes';
+import globalStyles from './lib/globalStyles';
+import routes from './lib/routes';
 import Page from './components/Page/Page';
 
 const App = () => {

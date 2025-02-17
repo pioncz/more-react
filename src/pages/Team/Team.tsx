@@ -6,7 +6,7 @@ import {
   getIgnoredChampionIds,
   getSharedAccount,
 } from '@/store/selectors';
-import { fetchRewards, fetchSkills, fetchTrials } from '@/utils/api';
+import { fetchRewards, fetchSkills, fetchTrials } from '@/lib/api';
 import { useQuery } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';

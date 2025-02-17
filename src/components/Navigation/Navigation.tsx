@@ -1,7 +1,7 @@
 import { styled } from '@/stitches.config';
 import { NavLink } from 'react-router';
 import Box from '@/components/Box/Box';
-import routes from '@/utils/routes';
+import routes from '@/lib/routes';
 
 const Navigation = () => {
   return (
