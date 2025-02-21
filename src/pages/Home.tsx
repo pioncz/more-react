@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { remove } from 'lodash';
 
 const Home = () => {
   const [hhLink, setHhLink] = useState(
@@ -66,8 +67,32 @@ const Home = () => {
     }
   }, [dispatch, hhLink, data]);
 
+  useEffect(() => {
+    const listener = (event: MessageEvent) => {
+      console.log('Message received', event.data);
+    };
+
+    navigator.serviceWorker.addEventListener('message', listener);
+
+    return () => {
+      navigator.serviceWorker.removeEventListener(
+        'message',
+        listener,
+      );
+    };
+  }, []);
+
   return (
     <Root loading={isLoading}>
+      <button
+        onClick={() => {
+          navigator?.serviceWorker?.controller?.postMessage({
+            hello: 'world',
+          });
+        }}
+      >
+        Send message
+      </button>
       <h1>Welcome in the Chimera team builder</h1>
       <p>
         Share your HH Optimiser link, so we can prepare team
