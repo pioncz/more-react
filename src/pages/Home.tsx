@@ -5,12 +5,14 @@ import Input from '@/components/Input/Input';
 import Loader from '@/components/Loader/Loader';
 import { styled } from '@/stitches.config';
 import { userChampionsSlice } from '@/store/slices/userChampions.slice';
-import { fetchSharedAccount } from '@/lib/api';
+import {
+  fetchSharedAccount,
+  fetchSharedAccountExample,
+} from '@/lib/api';
 import { useQuery } from '@tanstack/react-query';
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { remove } from 'lodash';
 
 const Home = () => {
   const [hhLink, setHhLink] = useState(
@@ -18,24 +20,42 @@ const Home = () => {
   );
   const [sharedKey, setSharedKey] = useState('');
   const [underscore, setUnderscore] = useState('');
-  const fetchEnabled = sharedKey !== '' && underscore !== '';
+  const fetchAccountEnabled = sharedKey !== '' && underscore !== '';
   const {
-    isPending,
-    isError: isFetchError,
-    data,
-    error,
+    isPending: isAccountPending,
+    isError: isFetchAccountError,
+    data: accountData,
+    error: accountError,
   } = useQuery({
     queryKey: ['sharedAccount'],
     queryFn: fetchSharedAccount({ sharedKey, underscore }),
-    enabled: fetchEnabled,
+    enabled: fetchAccountEnabled,
   });
-  const isLoading = isPending && fetchEnabled;
+  const fetchExampleEnabled = sharedKey === 'example';
+  const {
+    isPending: isExamplePending,
+    isError: isFetchExampleError,
+    data: exampleData,
+    error: exampleError,
+  } = useQuery({
+    queryKey: ['sharedAccountExample'],
+    queryFn: fetchSharedAccountExample,
+    enabled: fetchExampleEnabled,
+  });
+  const isLoading =
+    (isAccountPending && fetchAccountEnabled) ||
+    (isExamplePending && fetchExampleEnabled);
   const [isLinked, setIsLinked] = useState(
     !!localStorage.getItem('sharedAccount'),
   );
   const [urlError, setUrlError] = useState<Error | null>();
-  const isError = !!urlError || isFetchError;
-  const errorMessage = urlError ? urlError?.message : error?.message;
+  const isError =
+    !!urlError || isFetchAccountError || isFetchExampleError;
+  const errorMessage =
+    urlError?.message ||
+    accountError?.message ||
+    exampleError?.message;
+  const data = accountData || exampleData;
   const dispatch = useDispatch();
 
   const handleReset = () => {
@@ -54,6 +74,12 @@ const Home = () => {
     } else {
       setUrlError(new Error('Invalid url'));
     }
+  };
+
+  const handleUseExample = () => {
+    setUrlError(null);
+    setSharedKey('example');
+    setHhLink('example');
   };
 
   useEffect(() => {
@@ -114,6 +140,9 @@ const Home = () => {
         </Button>
         <Button disabled={isLoading} onClick={handleSend}>
           Save
+        </Button>
+        <Button disabled={isLoading} onClick={handleUseExample}>
+          Example Data
         </Button>
         <AnimatePresence initial={false}>
           {isLoading && (

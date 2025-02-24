@@ -7,7 +7,7 @@ import {
 } from '@/types/types';
 import axios from 'axios';
 
-export const BASE_URL = 'http://localhost:3001/';
+export const BASE_URL = 'http://localhost:3000/';
 
 export const fetchSharedAccount =
   ({
@@ -31,11 +31,16 @@ export const fetchSharedAccount =
         return { ...res.data, heroTypes };
       });
 
+export const fetchSharedAccountExample = (): Promise<SharedAccount> =>
+  axios
+    .get(`${BASE_URL}SharedAccountExample.json`)
+    .then((res) => res.data);
+
 export const fetchRewards = (): Promise<Reward[]> =>
-  axios.get(`${BASE_URL}static/Rewards.json`).then((res) => res.data);
+  axios.get(`${BASE_URL}Rewards.json`).then((res) => res.data);
 
 export const fetchSkills = (): Promise<Skill[]> =>
-  axios.get(`${BASE_URL}static/Skills.json`).then((res) => res.data);
+  axios.get(`${BASE_URL}Skills.json`).then((res) => res.data);
 
 export const fetchTrials = (): Promise<Trial[]> =>
-  axios.get(`${BASE_URL}static/Trials.json`).then((res) => res.data);
+  axios.get(`${BASE_URL}Trials.json`).then((res) => res.data);

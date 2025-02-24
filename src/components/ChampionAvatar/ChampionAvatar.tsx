@@ -32,8 +32,7 @@ const ChampionAvatar = ({
       selectable={!!onClick}
     >
       <Image
-        // eslint-disable-next-line max-len
-        src={`${BASE_URL}image?faction=${faction}&rarity=${rarity}&name=${name}`}
+        src={`${BASE_URL}/Avatars/${name}.png`}
         alt={champion.name}
         scale={isScaling}
         onAnimationEnd={() => setIsScaling(false)}

@@ -47,6 +47,7 @@ const Root = styled('button', {
   border: 'none',
   transition: '$1',
   cursor: 'pointer',
+  textWrap: 'nowrap',
 
   '&:hover': {
     backgroundColor: '$gray200',
