@@ -30,7 +30,6 @@ const globalStyles = globalCss({
   '#root': {
     display: 'flex',
     flexDirection: 'column',
-    height: '100%',
     width: '100%',
     textAlign: 'center',
   },
